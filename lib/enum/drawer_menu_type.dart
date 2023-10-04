@@ -1,0 +1,4 @@
+enum DrawerMenuType {
+  search,
+  collection,
+}
