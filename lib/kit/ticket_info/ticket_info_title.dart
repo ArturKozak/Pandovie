@@ -5,7 +5,7 @@ import 'package:pandovie/resource/theme.dart';
 
 class TicketInfoTitle extends StatelessWidget {
   static const _opacityDuration = 350;
-  static const _horizontalPadding = 16.0;
+  static const _horizontalPadding = 30.0;
 
   const TicketInfoTitle({
     super.key,

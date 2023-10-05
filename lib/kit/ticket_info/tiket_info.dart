@@ -82,19 +82,19 @@ class _TicketInfoState extends State<TicketInfo> {
       left: 0,
       right: 0,
       top: _tiketTopPosition,
-      child: Stack(
-        children: [
-          GestureDetector(
-            onVerticalDragUpdate: (details) async {
-              if (details.primaryDelta! > 0) {
-                // Swiped down
-                _collapseContainer();
-              } else if (details.primaryDelta! < 0) {
-                // Swiped up
-                await _expandContainer();
-              }
-            },
-            child: AnimatedContainer(
+      child: GestureDetector(
+        onVerticalDragUpdate: (details) async {
+          if (details.primaryDelta! > 0) {
+            // Swiped down
+            _collapseContainer();
+          } else if (details.primaryDelta! < 0) {
+            // Swiped up
+            await _expandContainer();
+          }
+        },
+        child: Stack(
+          children: [
+            AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               height: _ticketHeight,
               margin: EdgeInsets.all(
@@ -111,74 +111,33 @@ class _TicketInfoState extends State<TicketInfo> {
                 ),
               ),
             ),
-          ),
-          TicketInfoTitle(
-            titleBottomPosition: _isExpanded ? 250.h : _titleBottomPosition,
-            movie: widget.movie,
-            opacity: OpenCubit.listen<SearchPageControllerCubit>(context)
-                        .currentIndex ==
-                    widget.index
-                ? 1
-                : 0,
-          ),
-          TicketInfoOverView(
-            overviewBottomPosition: _overviewBottomPosition,
-            movie: widget.movie,
-            opacity: OpenCubit.listen<SearchPageControllerCubit>(context)
-                        .currentIndex ==
-                    widget.index
-                ? 1
-                : 0,
-          ),
-          AnimatedInfoElement(
-            isExpanded: _isExpanded,
-            isInfoVisibled: _isInfoVisibled,
-            topPosition: _voteInfoTopPosition,
-            expandedRightPosition: .82.sw,
-            child: VoteInfo(
+
+            TicketInfoTitle(
+              titleBottomPosition: _isExpanded ? 250.h : _titleBottomPosition,
               movie: widget.movie,
+              opacity: OpenCubit.listen<SearchPageControllerCubit>(context)
+                          .currentIndex ==
+                      widget.index
+                  ? 1
+                  : 0,
             ),
-            onEnd: () {
-              setState(() {
-                _isInfoVisibled = true;
-              });
-            },
-          ),
-          AnimatedInfoElement(
-            isExpanded: _isExpanded,
-            isInfoVisibled: _isInfoVisibled,
-            topPosition: _voteCountTopPosition,
-            expandedRightPosition: .4.sw,
-            child: VoteCount(
+            TicketInfoOverView(
+              isExpanded: _isExpanded,
+              overviewBottomPosition:
+                  _isExpanded ? 45.h : _overviewBottomPosition,
               movie: widget.movie,
+              opacity: OpenCubit.listen<SearchPageControllerCubit>(context)
+                          .currentIndex ==
+                      widget.index
+                  ? 1
+                  : 0,
             ),
-            onEnd: () {
-              setState(() {
-                _isInfoVisibled = true;
-              });
-            },
-          ),
-          AnimatedInfoElement(
-            isExpanded: _isExpanded,
-            isInfoVisibled: _isInfoVisibled,
-            topPosition: _popularityTopPosition,
-            expandedRightPosition: -.1.sw,
-            child: PopularityInfo(
-              movie: widget.movie,
-            ),
-            onEnd: () {
-              setState(() {
-                _isInfoVisibled = true;
-              });
-            },
-          ),
-          if (widget.movie.releaseDate != null)
             AnimatedInfoElement(
               isExpanded: _isExpanded,
               isInfoVisibled: _isInfoVisibled,
-              topPosition: _releaseTopPosition,
-              expandedRightPosition: -.65.sw,
-              child: ReleaseInfo(
+              topPosition: _voteInfoTopPosition,
+              expandedRightPosition: .82.sw,
+              child: VoteInfo(
                 movie: widget.movie,
               ),
               onEnd: () {
@@ -187,49 +146,92 @@ class _TicketInfoState extends State<TicketInfo> {
                 });
               },
             ),
-
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            margin: EdgeInsets.only(
-              left: _isExpanded ? 0 : _cardMargin,
-              right: _isExpanded ? 0 : _cardMargin / 2,
-              top: _isExpanded ? 0 : _cardTopMargin,
-            ).r,
-            height: _isExpanded ? .7.sh : .6.sh,
-            width: _isExpanded ? 1.sw : .69.sw,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: _spreadRadius,
-                  blurRadius: _blurRadius,
-                  offset: const Offset(0, _cardMargin),
-                ),
-              ],
+            AnimatedInfoElement(
+              isExpanded: _isExpanded,
+              isInfoVisibled: _isInfoVisibled,
+              topPosition: _voteCountTopPosition,
+              expandedRightPosition: .4.sw,
+              child: VoteCount(
+                movie: widget.movie,
+              ),
+              onEnd: () {
+                setState(() {
+                  _isInfoVisibled = true;
+                });
+              },
             ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(
-                  _borderRadius,
+            AnimatedInfoElement(
+              isExpanded: _isExpanded,
+              isInfoVisibled: _isInfoVisibled,
+              topPosition: _popularityTopPosition,
+              expandedRightPosition: -.1.sw,
+              child: PopularityInfo(
+                movie: widget.movie,
+              ),
+              onEnd: () {
+                setState(() {
+                  _isInfoVisibled = true;
+                });
+              },
+            ),
+            if (widget.movie.releaseDate != null)
+              AnimatedInfoElement(
+                isExpanded: _isExpanded,
+                isInfoVisibled: _isInfoVisibled,
+                topPosition: _releaseTopPosition,
+                expandedRightPosition: -.65.sw,
+                child: ReleaseInfo(
+                  movie: widget.movie,
                 ),
+                onEnd: () {
+                  setState(() {
+                    _isInfoVisibled = true;
+                  });
+                },
+              ),
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: EdgeInsets.only(
+                left: _isExpanded ? 0 : _cardMargin,
+                right: _isExpanded ? 0 : _cardMargin / 2,
+                top: _isExpanded ? 0 : _cardTopMargin,
               ).r,
-              child: ParallaxImage(
-                image: MemoryImage(
-                  widget.movie.posterImage!,
+              height: _isExpanded ? .7.sh : .6.sh,
+              width: _isExpanded ? 1.sw : .69.sw,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: _spreadRadius,
+                    blurRadius: _blurRadius,
+                    offset: const Offset(0, _cardMargin),
+                  ),
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(
+                    _borderRadius,
+                  ),
+                ).r,
+                child: ParallaxImage(
+                  image: MemoryImage(
+                    widget.movie.posterImage!,
+                  ),
+                  extent: 100.0,
+                  color: AppTheme.primaryColor,
                 ),
-                extent: 100.0,
-                color: AppTheme.primaryColor,
               ),
             ),
-          ),
-          //       32.verticalSpace,
-          //       MovieSaveButton(
-          //         movie: widget.movie,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-        ],
+            //       32.verticalSpace,
+            //       MovieSaveButton(
+            //         movie: widget.movie,
+            //       ),
+            //     ],
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
