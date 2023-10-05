@@ -18,7 +18,6 @@ class TicketInfo extends StatefulWidget {
   final MovieModel movie;
   final int index;
 
-
   const TicketInfo({
     required this.movie,
     required this.index,

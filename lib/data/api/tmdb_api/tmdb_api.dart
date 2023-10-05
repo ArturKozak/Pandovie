@@ -53,7 +53,10 @@ class TMDBApi {
       }
     }
 
-    return model.copyWith(productionCompanies: fullCompanyList);
+    return model.copyWith(
+      productionCompanies: fullCompanyList,
+      posterImage: await ImageHelper.getNetworkImage(fullModel.posterImageRaw),
+    );
   }
 
   Future<List<MovieModel>> getMoviesByQuery({
@@ -63,7 +66,6 @@ class TMDBApi {
     int? page,
   }) async {
     final moviesList = <MovieModel>[];
-    final fullMovieList = <MovieModel>[];
 
     final response = await _tmdbResource.getMoviesByQuery(
       query: query,
@@ -82,7 +84,7 @@ class TMDBApi {
       moviesList.add(model);
     }
 
-    List<Uint8List?> movieImages = await Future.wait(
+    List<MovieModel> movies = await Future.wait(
       moviesList.map((movie) async {
         if (movie.budget == null &&
             movie.genres == null &&
@@ -90,21 +92,16 @@ class TMDBApi {
             movie.runtime == null &&
             movie.status == null &&
             movie.productionCompanies == null) {
-          await getMovieDetails(
+          return getMovieDetails(
             model: movie,
+            language: language,
           );
         }
 
-        return ImageHelper.getNetworkImage(movie.posterImageRaw);
+        return movie;
       }),
     );
 
-    for (var i = 0; i < moviesList.length; i++) {
-      final model = moviesList[i].copyWith(posterImage: movieImages[i]);
-
-      fullMovieList.add(model);
-    }
-
-    return fullMovieList;
+    return movies;
   }
 }

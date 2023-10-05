@@ -7,7 +7,6 @@ import 'package:pandovie/resource/app_icons.dart';
 import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
 
-
 class MovieSaveButton extends OpenCubitWidgetBase<SearchMovieCubit> {
   final MovieModel movie;
 
