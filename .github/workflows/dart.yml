@@ -10,6 +10,7 @@ jobs:
 
   mobile_ci:
     runs-on: windows-latest
+    environment: D_NAME
 
     steps:
 
