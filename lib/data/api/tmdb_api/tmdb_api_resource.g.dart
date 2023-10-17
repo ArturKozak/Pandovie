@@ -23,7 +23,7 @@ class _TMDBApiResource implements TMDBApiResource {
     required String query,
     bool? includeAdult = false,
     String? language = 'en-US',
-    int? page = 1,
+    int? page = 2,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -49,6 +49,92 @@ class _TMDBApiResource implements TMDBApiResource {
             .compose(
               _dio.options,
               '/search/movie',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesCollectionContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MoviesCollectionContract> getNowPlaying({
+    bool? includeAdult = false,
+    String? language = 'en-US',
+    int? page = 1,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'include_adult': includeAdult,
+      r'language': language,
+      r'page': page,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MoviesCollectionContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/trending/movie/week',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesCollectionContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MoviesCollectionContract> getUpcoming({
+    bool? includeAdult = false,
+    String? language = 'en-US',
+    int? page = 1,
+    String? minDate,
+    String? maxDate,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'include_adult': includeAdult,
+      r'language': language,
+      r'page': page,
+      r'release_date.gte': minDate,
+      r'release_date.lte': maxDate,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MoviesCollectionContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/movie/upcoming',
               queryParameters: queryParameters,
               data: _data,
             )

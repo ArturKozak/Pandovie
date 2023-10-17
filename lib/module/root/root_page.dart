@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:pandovie/module/collection/cubit/collection_manager_cubit.dart';
+import 'package:pandovie/module/search/cubit/now_playing/now_playing_cubit.dart';
 import 'package:pandovie/module/search/cubit/search_movie/search_movie_cubit.dart';
 import 'package:pandovie/module/root/widget/drawer.dart';
 import 'package:pandovie/module/root/cubit/root_cubit.dart';
+import 'package:pandovie/module/search/cubit/upcoing_movies/upcoming_movies_cubit.dart';
 import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_impl.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_page_base.dart';
@@ -23,6 +25,18 @@ class RootPage extends OpenCubitPageBase<RootCubit> {
         BlocProvider(
           create: (_) => OpenCubit.put(
             RootCubit(),
+          ),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (_) => OpenCubit.put(
+            UpcomingMoviesCubit()..searchUpcoming(),
+          ),
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (_) => OpenCubit.put(
+            NowPlayingCubit()..searchNowPlaying(),
           ),
           lazy: false,
         ),

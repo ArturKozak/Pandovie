@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:pandovie/data/api/tmdb_api/tmdb_api_resource.dart';
 import 'package:pandovie/data/models/movie_model.dart';
 import 'package:pandovie/data/models/production_companies/production_companies_model.dart';
+import 'package:pandovie/extension/date_time_extension.dart';
 import 'package:pandovie/utils/image_helper.dart';
 
 class TMDBApi {
@@ -24,7 +25,7 @@ class TMDBApi {
     required MovieModel model,
     String? language,
   }) async {
-    final fullCompanyList = <ProductionCompaniesModel>[];
+    // final fullCompanyList = <ProductionCompaniesModel>[];
 
     final response = await _tmdbResource.getMovieDetails(
       id: model.id,
@@ -36,27 +37,126 @@ class TMDBApi {
       model,
     );
 
-    if (fullModel.productionCompanies != null &&
-        fullModel.productionCompanies!.isNotEmpty) {
-      List<Uint8List?> companyImages = await Future.wait(
-        fullModel.productionCompanies!.map((company) {
-          return ImageHelper.getNetworkImage(company.logoPathRaw);
-        }),
-      );
+    // if (fullModel.productionCompanies != null &&
+    //     fullModel.productionCompanies!.isNotEmpty) {
+    //   List<Uint8List?> companyImages = await Future.wait(
+    //     fullModel.productionCompanies!.map((company) {
+    //       return ImageHelper.getNetworkImage(company.logoPathRaw);
+    //     }),
+    //   );
 
-      for (var i = 0; i < fullModel.productionCompanies!.length; i++) {
-        final model = fullModel.productionCompanies![i].copyWith(
-          logoPath: companyImages[i],
-        );
+    //   for (var i = 0; i < fullModel.productionCompanies!.length; i++) {
+    //     final model = fullModel.productionCompanies![i].copyWith(
+    //       logoPath: companyImages[i],
+    //     );
 
-        fullCompanyList.add(model);
+    //     fullCompanyList.add(model);
+    //   }
+    // }
+
+    return fullModel;
+    // .copyWith(
+    //   productionCompanies: fullCompanyList,
+    //   posterImage: await ImageHelper.getNetworkImage(fullModel.posterImageRaw),
+    // );
+  }
+
+  Future<List<MovieModel>> getNowPlaying({
+    bool? includeAdult,
+    String? language,
+    int? page,
+  }) async {
+    final moviesList = <MovieModel>[];
+
+    final response = await _tmdbResource.getNowPlaying(
+      includeAdult: includeAdult,
+      language: language,
+      page: page,
+    );
+
+    for (final movieContract in response.results) {
+      final model = MovieModel.fromContract(movieContract);
+
+      if (model.posterImageRaw == null) {
+        continue;
       }
+
+      moviesList.add(model);
     }
 
-    return model.copyWith(
-      productionCompanies: fullCompanyList,
-      posterImage: await ImageHelper.getNetworkImage(fullModel.posterImageRaw),
+    List<MovieModel> movies = await Future.wait(
+      moviesList.map((movie) async {
+        if (movie.budget == null &&
+            movie.genres == null &&
+            movie.revenue == null &&
+            movie.runtime == null &&
+            movie.status == null &&
+            movie.productionCompanies == null) {
+          return getMovieDetails(
+            model: movie,
+            language: language,
+          );
+        }
+
+        return movie;
+      }),
     );
+
+    return movies;
+  }
+
+  Future<List<MovieModel>> getUpcoming({
+    bool? includeAdult,
+    String? language,
+    int? page,
+  }) async {
+    final moviesList = <MovieModel>[];
+
+    final response = await _tmdbResource.getUpcoming(
+      includeAdult: includeAdult,
+      language: language,
+      page: page,
+      minDate: DateTime.now()
+          .add(
+            const Duration(days: 50),
+          )
+          .formatDateForQuery(),
+      maxDate: DateTime.now()
+          .add(
+            const Duration(days: 130),
+          )
+          .formatDateForQuery(),
+    );
+
+    for (final movieContract in response.results) {
+      final model = MovieModel.fromContract(movieContract);
+
+      if (model.posterImageRaw == null) {
+        continue;
+      }
+
+      moviesList.add(model);
+    }
+
+    List<MovieModel> movies = await Future.wait(
+      moviesList.map((movie) async {
+        if (movie.budget == null &&
+            movie.genres == null &&
+            movie.revenue == null &&
+            movie.runtime == null &&
+            movie.status == null &&
+            movie.productionCompanies == null) {
+          return getMovieDetails(
+            model: movie,
+            language: language,
+          );
+        }
+
+        return movie;
+      }),
+    );
+
+    return movies;
   }
 
   Future<List<MovieModel>> getMoviesByQuery({

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
+import 'package:pandovie/kit/animated_list/animated_list.dart';
+import 'package:pandovie/module/search/cubit/now_playing/now_playing_cubit.dart';
 import 'package:pandovie/module/search/cubit/search_movie/search_movie_cubit.dart';
-import 'package:pandovie/resource/app_animations.dart';
+import 'package:pandovie/module/search/cubit/upcoing_movies/upcoming_movies_cubit.dart';
 import 'package:pandovie/resource/theme.dart';
 
 class SearchInitialState extends StatelessWidget {
+  static const _horizontalSpace = -25;
   const SearchInitialState({super.key});
 
   @override
@@ -14,9 +16,17 @@ class SearchInitialState extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppTheme.actionColor,
-      body: SizedBox(
+      body: Container(
         height: 1.sh,
         width: 1.sw,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              AppTheme.primaryColor,
+              AppTheme.actionColor,
+            ],
+          ),
+        ),
         child: Stack(
           children: [
             Padding(
@@ -56,53 +66,60 @@ class SearchInitialState extends StatelessWidget {
                     context.read<SearchMovieCubit>().searchMoviesByQuery,
               ),
             ),
+            // Positioned(
+            //   bottom: -70.h,
+            //   left: -250.h,
+            //   right: 0,
+            //   child: Lottie.asset(
+            //     AppAnimations.home,
+            //     height: 380.h,
+            //     fit: BoxFit.fitHeight,
+            //   ),
+            // ),
             Positioned(
-              bottom: -70.h,
-              left: -250.h,
-              right: 0,
-              child: Lottie.asset(
-                AppAnimations.home,
-                height: 380.h,
-                fit: BoxFit.fitHeight,
+              bottom: 300.h,
+              left: _horizontalSpace.w,
+              right: _horizontalSpace.w,
+              child: BlocBuilder<UpcomingMoviesCubit, UpcomingMoviesState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () {
+                      return const SizedBox();
+                    },
+                    detected: (results) {
+                      return SingleChildScrollView(
+                        child: ImageList(
+                          results: results,
+                          duration: 170,
+                          name: 'Upcoming movies',
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
             Positioned(
-              bottom: 170.h,
-              left: 220.h,
-              right: 0,
-              child: Text(
-                '1. Search',
-                style: AppTheme.textStyle.copyWith(
-                  fontSize: 22.sp,
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 130.h,
-              left: 220.h,
-              right: 0,
-              child: Text(
-                '2. Choose',
-                style: AppTheme.textStyle.copyWith(
-                  fontSize: 22.sp,
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 90.h,
-              left: 220.h,
-              right: 0,
-              child: Text(
-                '3. Save',
-                style: AppTheme.textStyle.copyWith(
-                  fontSize: 22.sp,
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.w800,
-                ),
+              bottom: 0,
+              left: _horizontalSpace.w,
+              right: _horizontalSpace.w,
+              child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () {
+                      return const SizedBox();
+                    },
+                    detected: (results) {
+                      return SingleChildScrollView(
+                        child: ImageList(
+                          results: results,
+                          duration: 170,
+                          name: 'Popular in this week',
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],

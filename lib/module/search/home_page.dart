@@ -13,10 +13,10 @@ import 'package:pandovie/utils/open_cubit/open_cubit_impl.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_page_base.dart';
 
 @RoutePage()
-class SearchPage extends OpenCubitPageBase<SearchMovieCubit> {
+class HomePage extends OpenCubitPageBase<SearchMovieCubit> {
   static final _appbarHeight = 58.0.h;
 
-  SearchPage({super.key});
+  HomePage({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) {

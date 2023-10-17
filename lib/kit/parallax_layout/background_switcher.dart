@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pandovie/configuration/pandovie_configuration.dart';
 import 'package:pandovie/data/models/movie_model.dart';
 
 class BackgroundSwitcher extends StatelessWidget {
@@ -27,8 +29,8 @@ class BackgroundSwitcher extends StatelessWidget {
         key: ValueKey<String>(movie.title),
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: MemoryImage(
-              movie.posterImage!,
+            image: CachedNetworkImageProvider(
+              '${PandovieConfiguration.imageUrl}${movie.posterImageRaw}',
             ),
             fit: BoxFit.cover,
           ),

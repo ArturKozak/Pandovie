@@ -9,10 +9,12 @@ import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
 
 class MovieSaveButton extends OpenCubitWidgetBase<SearchMovieCubit> {
   final MovieModel movie;
+  final VoidCallback onTap;
 
   MovieSaveButton({
     super.key,
     required this.movie,
+    required this.onTap,
   });
 
   @override
@@ -23,6 +25,7 @@ class MovieSaveButton extends OpenCubitWidgetBase<SearchMovieCubit> {
           svgPath: AppIcons.popcorn,
           height: 44.h,
           width: 44.w,
+          onTap: onTap,
         ),
         Text(
           'Save',

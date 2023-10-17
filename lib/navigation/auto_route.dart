@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pandovie/module/collection/collection_page.dart';
-import 'package:pandovie/module/search/search_page.dart';
+import 'package:pandovie/module/search/home_page.dart';
 import 'package:pandovie/module/root/root_page.dart';
 
 part 'auto_route.gr.dart';
@@ -12,7 +12,7 @@ part 'auto_route.gr.dart';
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route, Page')
 class AppRouter extends _$AppRouter {
   static const rootSignature = '/';
-  static const searchRoute = 'search';
+  static const homeRoute = 'home';
   static const collectionRoute = 'collection';
 
   @override
@@ -24,8 +24,8 @@ class AppRouter extends _$AppRouter {
           initial: true,
           children: [
             AutoRoute(
-              path: searchRoute,
-              page: SearchPageRoute.page,
+              path: homeRoute,
+              page: HomePageRoute.page,
               initial: true,
             ),
             AutoRoute(
@@ -36,8 +36,8 @@ class AppRouter extends _$AppRouter {
         ),
       ];
 
-  static Future<void> navigateToSearchPage() {
-    return GetIt.I<AppRouter>().navigateNamed('$rootSignature$searchRoute');
+  static Future<void> navigateToHomePage() {
+    return GetIt.I<AppRouter>().navigateNamed('$rootSignature$homeRoute');
   }
 
   static Future<void> navigateToCollectionPage() {

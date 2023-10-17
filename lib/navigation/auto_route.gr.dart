@@ -23,20 +23,20 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: CollectionPage(key: args.key)),
       );
     },
+    HomePageRoute.name: (routeData) {
+      final args = routeData.argsAs<HomePageRouteArgs>(
+          orElse: () => const HomePageRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(child: HomePage(key: args.key)),
+      );
+    },
     RootPageRoute.name: (routeData) {
       final args = routeData.argsAs<RootPageRouteArgs>(
           orElse: () => const RootPageRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(child: RootPage(key: args.key)),
-      );
-    },
-    SearchPageRoute.name: (routeData) {
-      final args = routeData.argsAs<SearchPageRouteArgs>(
-          orElse: () => const SearchPageRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: SearchPage(key: args.key)),
       );
     },
   };
@@ -72,6 +72,35 @@ class CollectionPageRouteArgs {
 }
 
 /// generated route for
+/// [HomePage]
+class HomePageRoute extends PageRouteInfo<HomePageRouteArgs> {
+  HomePageRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HomePageRoute.name,
+          args: HomePageRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'HomePageRoute';
+
+  static const PageInfo<HomePageRouteArgs> page =
+      PageInfo<HomePageRouteArgs>(name);
+}
+
+class HomePageRouteArgs {
+  const HomePageRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'HomePageRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [RootPage]
 class RootPageRoute extends PageRouteInfo<RootPageRouteArgs> {
   RootPageRoute({
@@ -97,34 +126,5 @@ class RootPageRouteArgs {
   @override
   String toString() {
     return 'RootPageRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
-/// [SearchPage]
-class SearchPageRoute extends PageRouteInfo<SearchPageRouteArgs> {
-  SearchPageRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          SearchPageRoute.name,
-          args: SearchPageRouteArgs(key: key),
-          initialChildren: children,
-        );
-
-  static const String name = 'SearchPageRoute';
-
-  static const PageInfo<SearchPageRouteArgs> page =
-      PageInfo<SearchPageRouteArgs>(name);
-}
-
-class SearchPageRouteArgs {
-  const SearchPageRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SearchPageRouteArgs{key: $key}';
   }
 }

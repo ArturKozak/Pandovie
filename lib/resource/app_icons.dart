@@ -10,4 +10,10 @@ class AppIcons {
   static final search = _fullIconPath('search');
   static final menu = _fullIconPath('settings');
   static final collection = _fullIconPath('collection');
+  static final dollar = _fullIconPath('dollar');
+  static final time = _fullIconPath('time');
+  static final avarage = _fullIconPath('avarage');
+  static final genred = _fullIconPath('genred');
+  static final popular = _fullIconPath('popular');
+  static final release = _fullIconPath('release');
 }

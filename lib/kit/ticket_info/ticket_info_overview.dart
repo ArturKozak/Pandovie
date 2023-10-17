@@ -34,14 +34,14 @@ class TicketInfoOverView extends StatelessWidget {
       child: Center(
         child: AnimatedOpacity(
           duration: const Duration(
-            milliseconds: _opacityDuration,
+            milliseconds: 200,
           ),
           opacity: opacity,
           child: AnimatedContainer(
             duration: const Duration(
               milliseconds: _opacityDuration,
             ),
-            height: isExpanded ? 120.h : _textHeight,
+            height: _textHeight,
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Text(

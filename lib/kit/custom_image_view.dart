@@ -2,10 +2,14 @@
 
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomImageView extends StatelessWidget {
+  ///[url] is required parameter for fetching network image
+  String? url;
+
   ///[imagePath] is required parameter for showing png,jpg,etc image
   String? imagePath;
 
@@ -19,15 +23,18 @@ class CustomImageView extends StatelessWidget {
   double? width;
   Color? color;
   BoxFit? fit;
-
+  final String placeHolder;
   Alignment? alignment;
   VoidCallback? onTap;
   EdgeInsetsGeometry? margin;
   BorderRadius? radius;
   BoxBorder? border;
 
+  ///a [CustomImageView] it can be used for showing any type of images
+  /// it will shows the placeholder image if image is not found on network image
   CustomImageView({
     super.key,
+    this.url,
     this.imagePath,
     this.svgPath,
     this.file,
@@ -40,6 +47,7 @@ class CustomImageView extends StatelessWidget {
     this.radius,
     this.margin,
     this.border,
+    this.placeHolder = 'assets/images/image_not_found.png',
   });
 
   @override
@@ -66,7 +74,7 @@ class CustomImageView extends StatelessWidget {
   _buildCircleImage() {
     if (radius != null) {
       return ClipRRect(
-        borderRadius: radius!,
+        borderRadius: radius ?? BorderRadius.zero,
         child: _buildImageWithBorder(),
       );
     } else {
@@ -109,6 +117,28 @@ class CustomImageView extends StatelessWidget {
         width: width,
         fit: fit ?? BoxFit.cover,
         color: color,
+      );
+    } else if (url != null && url!.isNotEmpty) {
+      return CachedNetworkImage(
+        height: height,
+        width: width,
+        fit: fit,
+        imageUrl: url!,
+        color: color,
+        // placeholder: (context, url) => SizedBox(
+        //   height: 30,
+        //   width: 30,
+        //   child: LinearProgressIndicator(
+        //     color: Colors.grey.shade200,
+        //     backgroundColor: Colors.grey.shade100,
+        //   ),
+        // ),
+        // errorWidget: (context, url, error) => Image.asset(
+        //   placeHolder,
+        //   height: height,
+        //   width: width,
+        //   fit: fit ?? BoxFit.cover,
+        // ),
       );
     } else if (imagePath != null && imagePath!.isNotEmpty) {
       return Image.asset(

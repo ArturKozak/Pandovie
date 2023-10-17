@@ -24,7 +24,31 @@ abstract class TMDBApiResource {
     @Query('query') required String query,
     @Query('include_adult') bool? includeAdult = false,
     @Query('language') String? language = 'en-US',
+    @Query('page') int? page = 2,
+  });
+
+  @GET('/trending/movie/week')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MoviesCollectionContract> getNowPlaying({
+    @Query('include_adult') bool? includeAdult = false,
+    @Query('language') String? language = 'en-US',
     @Query('page') int? page = 1,
+  });
+
+  @GET('/movie/upcoming')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MoviesCollectionContract> getUpcoming({
+    @Query('include_adult') bool? includeAdult = false,
+    @Query('language') String? language = 'en-US',
+    @Query('page') int? page = 1,
+    @Query('release_date.gte') String? minDate,
+    @Query('release_date.lte') String? maxDate,
   });
 
   @GET('/movie/{movie_id}')

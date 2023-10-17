@@ -34,7 +34,7 @@ class RootCubit extends Cubit<RootState> {
   }
 
   Future<void> navigateToSearchPage() {
-    return AppRouter.navigateToSearchPage();
+    return AppRouter.navigateToHomePage();
   }
 
   Future<void> navigateToCollectionPage() {
