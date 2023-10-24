@@ -1,4 +1,4 @@
-package com.example.pandovie
+package com.connerrhia.pandovie
 
 import io.flutter.embedding.android.FlutterActivity
 
