@@ -11,6 +11,7 @@ jobs:
 
   pre_build:
     runs-on: windows-latest
+    environment: D_NAME
     permissions:
       contents: write
 
@@ -90,6 +91,7 @@ jobs:
     name: create_release
     needs: [ pre_build ]
     runs-on: macos-latest
+    environment: D_NAME
     permissions:
       contents: write
     steps:
