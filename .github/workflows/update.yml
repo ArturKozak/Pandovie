@@ -28,24 +28,24 @@ jobs:
 
     - name: Create raw jks key
       shell: powershell
-      run: New-Item -path D:\a\mobile_ci\mobile_ci\android\ -type file -name "raw_key.txt"
+      run: New-Item -path D:\a\Pandovie\Pandovie\android\ -type file -name "raw_key.txt"
 
     - name: Set jks content
       shell: powershell
-      run: Set-Content D:\a\mobile_ci\mobile_ci\android\raw_key.txt "${{ secrets.APPSTORE_CERT_BASE64 }}"
+      run: Set-Content D:\a\Pandovie\Pandovie\android\raw_key.txt "${{ secrets.APPSTORE_CERT_BASE64 }}"
   
     - name: Decode release keystore and SHA1 key
       shell: powershell
       run: |
-          certutil -decode D:\a\mobile_ci\mobile_ci\android\raw_key.txt D:\a\mobile_ci\mobile_ci\android\upload-keystore.jks
+          certutil -decode D:\a\Pandovie\Pandovie\android\raw_key.txt D:\a\Pandovie\Pandovie\android\upload-keystore.jks
     
     - name: Create key.properties
       shell: powershell
-      run: New-Item -path D:\a\mobile_ci\mobile_ci\android\ -type file -name "key.properties"
+      run: New-Item -path D:\a\Pandovie\Pandovie\android\ -type file -name "key.properties"
 
     - name: Set key.properties content
       shell: powershell
-      run: Set-Content D:\a\mobile_ci\mobile_ci\android\key.properties '${{ secrets.KEY_PROPERTIES }}'
+      run: Set-Content D:\a\Pandovie\Pandovie\android\key.properties '${{ secrets.KEY_PROPERTIES }}'
 
     - name: Install Flutter
       uses: subosito/flutter-action@v2
@@ -62,13 +62,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: abb-file
-        path: D:\a\mobile_ci\mobile_ci\build\app\outputs\bundle\release\app-release.aab
+        path: D:\a\Pandovie\Pandovie\build\app\outputs\bundle\release\app-release.aab
 
     - name: Upload mapping file
       uses: actions/upload-artifact@v3
       with:
         name: mapping-file
-        path: D:\a\mobile_ci\mobile_ci\build\app\outputs\mapping\release\mapping.txt
+        path: D:\a\Pandovie\Pandovie\build\app\outputs\mapping\release\mapping.txt
 
     - name: Clean up flutter
       if: ${{ always() }}
@@ -96,7 +96,7 @@ jobs:
     - name: Create GitHub release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "/Users/runner/work/mobile_ci/mobile_ci/mapping.txt,/Users/runner/work/mobile_ci/mobile_ci/app-release.aab"
+        artifacts: "/Users/runner/work/Pandovie/Pandovie/mapping.txt,/Users/runner/work/Pandovie/Pandovie/app-release.aab"
         name: "${{ secrets.APP_VERSION }}"
         tag: "${{ secrets.APP_VERSION }}"
   
@@ -105,7 +105,7 @@ jobs:
     #   with:
     #     serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
     #     packageName: ${{ secrets.ANDROID_PACKAGE_ID }}
-    #     releaseFiles: D:\a\mobile_ci\mobile_ci\build\app\outputs\bundle\release\app-release.aab
-    #     mappingFile: D:\a\mobile_ci\mobile_ci\build\app\outputs\mapping\release\mapping.txt
+    #     releaseFiles: D:\a\Pandovie\Pandovie\build\app\outputs\bundle\release\app-release.aab
+    #     mappingFile: D:\a\Pandovie\Pandovie\build\app\outputs\mapping\release\mapping.txt
     #     track: alpha
     #     status: draft
