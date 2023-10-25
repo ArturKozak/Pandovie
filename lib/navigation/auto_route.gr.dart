@@ -23,6 +23,17 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(child: CollectionPage(key: args.key)),
       );
     },
+    DetailsMoviePageRoute.name: (routeData) {
+      final args = routeData.argsAs<DetailsMoviePageRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(
+            child: DetailsMoviePage(
+          key: args.key,
+          movie: args.movie,
+        )),
+      );
+    },
     HomePageRoute.name: (routeData) {
       final args = routeData.argsAs<HomePageRouteArgs>(
           orElse: () => const HomePageRouteArgs());
@@ -68,6 +79,44 @@ class CollectionPageRouteArgs {
   @override
   String toString() {
     return 'CollectionPageRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [DetailsMoviePage]
+class DetailsMoviePageRoute extends PageRouteInfo<DetailsMoviePageRouteArgs> {
+  DetailsMoviePageRoute({
+    Key? key,
+    required MovieModel movie,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailsMoviePageRoute.name,
+          args: DetailsMoviePageRouteArgs(
+            key: key,
+            movie: movie,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailsMoviePageRoute';
+
+  static const PageInfo<DetailsMoviePageRouteArgs> page =
+      PageInfo<DetailsMoviePageRouteArgs>(name);
+}
+
+class DetailsMoviePageRouteArgs {
+  const DetailsMoviePageRouteArgs({
+    this.key,
+    required this.movie,
+  });
+
+  final Key? key;
+
+  final MovieModel movie;
+
+  @override
+  String toString() {
+    return 'DetailsMoviePageRouteArgs{key: $key, movie: $movie}';
   }
 }
 

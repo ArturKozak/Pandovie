@@ -27,7 +27,7 @@ abstract class TMDBApiResource {
     @Query('page') int? page = 2,
   });
 
-  @GET('/trending/movie/week')
+  @GET('/trending/movie/day')
   @Headers(<String, dynamic>{
     "Accept": "application/json",
     "Authorization": PandovieConfiguration.accessTmdbKey,

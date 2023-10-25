@@ -49,6 +49,12 @@ class SearchMovieCubit extends Cubit<SearchMovieState> {
     return OpenCubit.find<RootCubit>().openMenuDrawer();
   }
 
+  void backToMain() {
+    return emit(
+      const SearchMovieState.initial(),
+    );
+  }
+
   @override
   Future<void> close() {
     OpenCubit.delete<SearchMovieCubit>();

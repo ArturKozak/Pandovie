@@ -89,7 +89,7 @@ class _TMDBApiResource implements TMDBApiResource {
     )
             .compose(
               _dio.options,
-              '/trending/movie/week',
+              '/trending/movie/day',
               queryParameters: queryParameters,
               data: _data,
             )

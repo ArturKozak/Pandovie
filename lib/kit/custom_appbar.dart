@@ -37,23 +37,30 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           initial: () => AppBar(
             backgroundColor: AppTheme.actionColor,
             elevation: 0,
-            actions: [
-              CustomIconButton(
-                height: _iconSize.h,
-                width: _iconSize.w,
-                margin: const EdgeInsets.only(
-                  right: _margin,
-                ).r,
-                padding: const EdgeInsets.all(
-                  _padding,
-                ).r,
-                alignment: Alignment.centerRight,
-                child: CustomImageView(
-                  svgPath: AppIcons.menu,
-                  onTap: onTap,
-                ),
+            leadingWidth: 75.w,
+            title: Text(
+              'Search your movie',
+              style: AppTheme.textStyle.copyWith(
+                fontSize: 22.sp,
+                color: AppTheme.primaryColor,
+                fontWeight: FontWeight.bold,
               ),
-            ],
+            ),
+            leading: CustomIconButton(
+              height: _iconSize.h,
+              width: _iconSize.w,
+              margin: const EdgeInsets.only(
+                right: _margin,
+              ).r,
+              padding: const EdgeInsets.all(
+                _padding,
+              ).r,
+              alignment: Alignment.centerRight,
+              child: CustomImageView(
+                svgPath: AppIcons.menu,
+                onTap: onTap,
+              ),
+            ),
           ),
         );
       },

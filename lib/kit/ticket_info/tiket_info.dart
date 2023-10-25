@@ -14,6 +14,7 @@ import 'package:pandovie/kit/ticket_info/ticket_info_title.dart';
 import 'package:pandovie/kit/ticket_info/ticket_painter.dart';
 import 'package:pandovie/kit/ticket_info/about_info_element.dart';
 import 'package:pandovie/module/search/cubit/search_movie/search_movie_cubit.dart';
+import 'package:pandovie/navigation/auto_route.dart';
 import 'package:pandovie/resource/app_icons.dart';
 import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/kit/parallax_layout/parallax_widget.dart';
@@ -213,9 +214,8 @@ class _TicketInfoState extends State<TicketInfo> {
                     const Spacer(),
                     MovieSaveButton(
                       movie: widget.movie,
-                      onTap: () => context
-                          .read<SearchMovieCubit>()
-                          .addToCollection(widget.movie),
+                      onTap: () =>
+                          AppRouter.navigateToDetailsPage(widget.movie),
                     ),
                   ],
                 ),
@@ -250,7 +250,7 @@ class _TicketInfoState extends State<TicketInfo> {
                   blendMode: BlendMode.dstOut,
                   child: SingleChildScrollView(
                     child: Column(children: [
-                      10.verticalSpace,
+                      20.verticalSpace,
                       SizedBox(
                         width: _titleWidth,
                         height: _titleheight,
@@ -434,7 +434,7 @@ class _TicketInfoState extends State<TicketInfo> {
                   ).r,
                   child: ParallaxImage(
                     image: CachedNetworkImageProvider(
-                      '${PandovieConfiguration.imageUrl}${widget.movie.posterImageRaw}',
+                      '${PandovieConfiguration.imageUrl}${widget.movie.posterImageRaw!}',
                     ),
                     extent: 100.0,
                     color: AppTheme.primaryColor,

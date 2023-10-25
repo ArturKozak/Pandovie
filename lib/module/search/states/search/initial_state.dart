@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pandovie/kit/animated_list/animated_list.dart';
+import 'package:pandovie/kit/custom_image_view.dart';
 import 'package:pandovie/module/search/cubit/now_playing/now_playing_cubit.dart';
 import 'package:pandovie/module/search/cubit/search_movie/search_movie_cubit.dart';
 import 'package:pandovie/module/search/cubit/upcoing_movies/upcoming_movies_cubit.dart';
+import 'package:pandovie/resource/app_animations.dart';
+import 'package:pandovie/resource/app_icons.dart';
 import 'package:pandovie/resource/theme.dart';
 
 class SearchInitialState extends StatelessWidget {
@@ -21,9 +25,12 @@ class SearchInitialState extends StatelessWidget {
         width: 1.sw,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [.1, .3],
             colors: [
-              AppTheme.primaryColor,
               AppTheme.actionColor,
+              AppTheme.primaryColor,
             ],
           ),
         ),
@@ -32,7 +39,7 @@ class SearchInitialState extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
-                vertical: 30,
+                vertical: 10,
               ).r,
               child: TextFormField(
                 cursorColor: AppTheme.primaryColor,
@@ -61,21 +68,20 @@ class SearchInitialState extends StatelessWidget {
                       width: 1.r,
                     ),
                   ),
+                  suffixIconConstraints: BoxConstraints(
+                    maxHeight: 50.h,
+                    maxWidth: 50.w,
+                  ),
+                  suffixIcon: CustomImageView(
+                    svgPath: AppIcons.search,
+                    color: AppTheme.primaryColor,
+                    margin: const EdgeInsets.only(right: 10).r,
+                  ),
                 ),
                 onFieldSubmitted:
                     context.read<SearchMovieCubit>().searchMoviesByQuery,
               ),
             ),
-            // Positioned(
-            //   bottom: -70.h,
-            //   left: -250.h,
-            //   right: 0,
-            //   child: Lottie.asset(
-            //     AppAnimations.home,
-            //     height: 380.h,
-            //     fit: BoxFit.fitHeight,
-            //   ),
-            // ),
             Positioned(
               bottom: 300.h,
               left: _horizontalSpace.w,

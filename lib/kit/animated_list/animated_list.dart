@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pandovie/configuration/pandovie_configuration.dart';
 import 'package:pandovie/data/models/movie_model.dart';
-import 'package:pandovie/kit/custom_image_view.dart';
 import 'package:pandovie/resource/theme.dart';
 
 class ImageList extends StatefulWidget {
@@ -95,8 +95,8 @@ class _ImageListState extends State<ImageList> {
               child: Text(
                 widget.name,
                 style: AppTheme.textStyle.copyWith(
-                  fontSize: 22.sp,
-                  color: AppTheme.primaryColor,
+                  fontSize: 24.sp,
+                  color: AppTheme.actionColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -112,13 +112,18 @@ class _ImageListState extends State<ImageList> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {},
-                    child: CustomImageView(
-                      url:
-                          '${PandovieConfiguration.imageUrl}${widget.results[index].posterImageRaw}',
+                    child: Container(
                       width: _width,
-                      fit: BoxFit.fill,
-                      radius: BorderRadius.circular(20).r,
                       margin: const EdgeInsets.all(4).r,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20).r,
+                        image: DecorationImage(
+                          image: CachedNetworkImageProvider(
+                            '${PandovieConfiguration.imageUrl}${widget.results[index].posterImageRaw!}',
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
                   );
                 },

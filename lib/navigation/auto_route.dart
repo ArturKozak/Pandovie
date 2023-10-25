@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pandovie/data/models/movie_model.dart';
 import 'package:pandovie/module/collection/collection_page.dart';
+import 'package:pandovie/module/details/details_page.dart';
 import 'package:pandovie/module/search/home_page.dart';
 import 'package:pandovie/module/root/root_page.dart';
 
@@ -34,10 +36,19 @@ class AppRouter extends _$AppRouter {
             ),
           ],
         ),
+        CustomRoute(
+          page: DetailsMoviePageRoute.page,
+          path: '/details',
+          transitionsBuilder: TransitionsBuilders.fadeIn,
+        ),
       ];
 
   static Future<void> navigateToHomePage() {
     return GetIt.I<AppRouter>().navigateNamed('$rootSignature$homeRoute');
+  }
+
+  static Future<void> navigateToDetailsPage(MovieModel movie) {
+    return GetIt.I<AppRouter>().navigate(DetailsMoviePageRoute(movie: movie));
   }
 
   static Future<void> navigateToCollectionPage() {
