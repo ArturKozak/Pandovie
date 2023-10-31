@@ -1,16 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:pandovie/data/api/tmdb_api/tmdb_api_resource.dart';
 import 'package:pandovie/data/models/movie_model.dart';
-import 'package:pandovie/data/models/production_companies/production_companies_model.dart';
 import 'package:pandovie/extension/date_time_extension.dart';
-import 'package:pandovie/utils/image_helper.dart';
-import 'package:pandovie/utils/isolated.dart';
 
-enum TMDBApiEvent {
-  fetchImages,
-}
 
-class TMDBApi extends Isolated<TMDBApiEvent> {
+
+class TMDBApi  {
   final String baseUrl;
   final Dio dio;
   late final TMDBApiResource _tmdbResource;
@@ -18,68 +13,66 @@ class TMDBApi extends Isolated<TMDBApiEvent> {
   TMDBApi({
     required this.baseUrl,
     required this.dio,
-  }) : super(tmdbApiHandlerProvider) {
+  }) : super() {
     _tmdbResource = TMDBApiResource(
       dio,
       baseUrl: baseUrl,
     );
   }
 
-  @override
-  String get debugName => 'tmdbApiIsolate';
 
-  Future<MovieModel> _getMovieImages({
-    required MovieModel model,
-  }) async {
-    final result = await run<MovieModel>(
-      TMDBApiEvent.fetchImages,
-      {
-        'list': model,
-      },
-    );
+  // Future<MovieModel> _getMovieImages({
+  //   required MovieModel model,
+  // }) async {
+  //   final result = await run<MovieModel>(
+  //     TMDBApiEvent.fetchImages,
+  //     {
+  //       'list': model,
+  //     },
+  //   );
 
-    return result;
-  }
+  //   return result;
+  // }
 
-  static Function(dynamic event, dynamic data) tmdbApiHandlerProvider() {
-    return (event, data) async {
-      final encryptorEvent = event as TMDBApiEvent;
+  // static Function(dynamic event, dynamic data) tmdbApiHandlerProvider() {
+  //   return (event, data) async {
+  //     final encryptorEvent = event as TMDBApiEvent;
 
-      switch (encryptorEvent) {
-        case TMDBApiEvent.fetchImages:
-          final model = data['list'] as MovieModel;
-          //TODO:
-          // final fullCompanyList = <ProductionCompaniesModel>[];
+  //     switch (encryptorEvent) {
+  //       case TMDBApiEvent.fetchImages:
+  //         final model = data['list'] as MovieModel;
+  //         //TODO:
+  //         // final fullCompanyList = <ProductionCompaniesModel>[];
 
-          // if (model.productionCompanies != null &&
-          //     model.productionCompanies!.isNotEmpty) {
-          //   final companyImages = await Future.wait(
-          //     model.productionCompanies!.map((company) {
-          //       return ImageHelper.getNetworkImage(company.logoPathRaw);
-          //     }),
-          //   );
+  //         // if (model.productionCompanies != null &&
+  //         //     model.productionCompanies!.isNotEmpty) {
+  //         //   final companyImages = await Future.wait(
+  //         //     model.productionCompanies!.map((company) {
+  //         //       return ImageHelper.getNetworkImage(company.logoPathRaw);
+  //         //     }),
+  //         //   );
 
-          //   for (var i = 0; i < model.productionCompanies!.length; i++) {
-          //     final fullCompanyModel = model.productionCompanies![i].copyWith(
-          //       logoPath: companyImages[i],
-          //     );
+  //         //   for (var i = 0; i < model.productionCompanies!.length; i++) {
+  //         //     final fullCompanyModel = model.productionCompanies![i].copyWith(
+  //         //       logoPath: companyImages[i],
+  //         //     );
 
-          //     fullCompanyList.add(fullCompanyModel);
-          //   }
-          // }
+  //         //     fullCompanyList.add(fullCompanyModel);
+  //         //   }
+  //         // }
 
-          return model;
-          // .copyWith(
-          //   productionCompanies: fullCompanyList,
-          //   posterImage:
-          //       await ImageHelper.getNetworkImage(model.posterImageRaw),
-          // );
+  //         return model;
+  //         // .copyWith(
+  //         //   productionCompanies: fullCompanyList,
+  //         //   posterImage:
+  //         //       await ImageHelper.getNetworkImage(model.posterImageRaw),
+  //         // );
 
-        default:
-          throw Exception('Unknown TMDB action!');
-      }
-    };
-  }
+  //       default:
+  //         throw Exception('Unknown TMDB action!');
+  //     }
+  //   };
+  // }
 
   Future<MovieModel> getMovieDetails({
     required MovieModel model,
@@ -95,7 +88,9 @@ class TMDBApi extends Isolated<TMDBApiEvent> {
       model,
     );
 
-    return _getMovieImages(model: fullModel);
+    // return _getMovieImages(model: fullModel);
+
+    return fullModel;
   }
 
   Future<List<MovieModel>> getNowPlaying({

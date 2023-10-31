@@ -14,7 +14,6 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../data/client/pandovie_client.dart' as _i5;
 import '../data/repositories/collection_repositories.dart' as _i4;
-import '../data/repositories/temporaly_repositories.dart' as _i6;
 import '../navigation/auto_route.dart' as _i3;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -32,8 +31,6 @@ extension GetItInjectableX on _i1.GetIt {
     gh.lazySingleton<_i4.CollectionRepository>(
         () => _i4.CollectionRepository()..init());
     gh.factory<_i5.PandovieClient>(() => _i5.PandovieClient());
-    gh.lazySingleton<_i6.TemporalyRepository>(
-        () => _i6.TemporalyRepository()..init());
     return this;
   }
 }

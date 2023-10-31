@@ -12,14 +12,11 @@ class TicketInfoOverView extends StatelessWidget {
     super.key,
     required this.overviewBottomPosition,
     required this.movie,
-    required this.opacity,
-    required this.isExpanded,
   });
 
   final double overviewBottomPosition;
-  final double opacity;
+
   final MovieModel movie;
-  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +29,20 @@ class TicketInfoOverView extends StatelessWidget {
       right: _horizontalPadding.w,
       bottom: overviewBottomPosition,
       child: Center(
-        child: AnimatedOpacity(
+        child: AnimatedContainer(
           duration: const Duration(
-            milliseconds: 200,
+            milliseconds: _opacityDuration,
           ),
-          opacity: opacity,
-          child: AnimatedContainer(
-            duration: const Duration(
-              milliseconds: _opacityDuration,
-            ),
-            height: _textHeight,
-            child: SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Text(
-                movie.overview,
-                textAlign: TextAlign.justify,
-                style: AppTheme.textStyle.copyWith(
-                  fontSize: 16.sp,
-                  color: AppTheme.actionColor.withOpacity(.8),
-                  fontWeight: FontWeight.w400,
-                ),
+          height: _textHeight,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Text(
+              movie.overview,
+              textAlign: TextAlign.justify,
+              style: AppTheme.textStyle.copyWith(
+                fontSize: 16.sp,
+                color: AppTheme.actionColor.withOpacity(.8),
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

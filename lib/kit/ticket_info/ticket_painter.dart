@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class TicketPainter extends CustomPainter {
   final Color borderColor;
   final Color bgColor;
-  final bool isExpand;
 
   static const _cornerGap = 30.0;
   static const _cutoutRadius = 18.0;
@@ -12,7 +11,6 @@ class TicketPainter extends CustomPainter {
   TicketPainter({
     required this.bgColor,
     required this.borderColor,
-    required this.isExpand,
   });
 
   @override
@@ -28,9 +26,9 @@ class TicketPainter extends CustomPainter {
 
     final dottedLineY = cutoutStartPos - _cutoutRadius;
 
-    double dottedLineStartX = isExpand ? 0 : _cutoutRadius;
+    double dottedLineStartX = _cutoutRadius;
 
-    final dottedLineEndX = isExpand ? 0 : maxWidth - _cutoutRadius - 5;
+    final dottedLineEndX = maxWidth - _cutoutRadius - 5;
 
     const dashWidth = 8.5;
 
@@ -57,21 +55,17 @@ class TicketPainter extends CustomPainter {
     path.lineTo(maxWidth - _cornerGap, 0);
     _drawCornerArc(path, maxWidth, _cornerGap);
     path.lineTo(maxWidth, rightCutoutStartY);
-    isExpand
-        ? null
-        : _drawCutout(path, maxWidth, rightCutoutStartY + _cutoutDiameter);
+    _drawCutout(path, maxWidth, rightCutoutStartY + _cutoutDiameter);
     path.lineTo(maxWidth, maxHeight - _cornerGap * 2);
     _drawCornerArc(path, maxWidth - _cornerGap, maxHeight - _cornerGap);
     path.lineTo(_cornerGap, maxHeight - _cornerGap);
     _drawCornerArc(path, 0, maxHeight - _cornerGap * 2);
     path.lineTo(0, leftCutoutStartY);
-    isExpand
-        ? null
-        : _drawCutout(
-            path,
-            0.0,
-            leftCutoutStartY - _cutoutDiameter,
-          );
+    _drawCutout(
+      path,
+      0.0,
+      leftCutoutStartY - _cutoutDiameter,
+    );
     path.lineTo(0, _cornerGap);
     _drawCornerArc(path, _cornerGap, 0);
 
