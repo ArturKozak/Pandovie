@@ -68,22 +68,22 @@ class _$GenresModelCopyWithImpl<$Res, $Val extends GenresModel>
 }
 
 /// @nodoc
-abstract class _$$_GenresModelCopyWith<$Res>
+abstract class _$$GenresModelImplCopyWith<$Res>
     implements $GenresModelCopyWith<$Res> {
-  factory _$$_GenresModelCopyWith(
-          _$_GenresModel value, $Res Function(_$_GenresModel) then) =
-      __$$_GenresModelCopyWithImpl<$Res>;
+  factory _$$GenresModelImplCopyWith(
+          _$GenresModelImpl value, $Res Function(_$GenresModelImpl) then) =
+      __$$GenresModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$_GenresModelCopyWithImpl<$Res>
-    extends _$GenresModelCopyWithImpl<$Res, _$_GenresModel>
-    implements _$$_GenresModelCopyWith<$Res> {
-  __$$_GenresModelCopyWithImpl(
-      _$_GenresModel _value, $Res Function(_$_GenresModel) _then)
+class __$$GenresModelImplCopyWithImpl<$Res>
+    extends _$GenresModelCopyWithImpl<$Res, _$GenresModelImpl>
+    implements _$$GenresModelImplCopyWith<$Res> {
+  __$$GenresModelImplCopyWithImpl(
+      _$GenresModelImpl _value, $Res Function(_$GenresModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_GenresModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$_GenresModel(
+    return _then(_$GenresModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_GenresModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GenresModel implements _GenresModel {
-  const _$_GenresModel({required this.id, required this.name});
+class _$GenresModelImpl implements _GenresModel {
+  const _$GenresModelImpl({required this.id, required this.name});
 
-  factory _$_GenresModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GenresModelFromJson(json);
+  factory _$GenresModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenresModelImplFromJson(json);
 
   @override
   final int id;
@@ -127,7 +127,7 @@ class _$_GenresModel implements _GenresModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GenresModel &&
+            other is _$GenresModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,12 +139,12 @@ class _$_GenresModel implements _GenresModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenresModelCopyWith<_$_GenresModel> get copyWith =>
-      __$$_GenresModelCopyWithImpl<_$_GenresModel>(this, _$identity);
+  _$$GenresModelImplCopyWith<_$GenresModelImpl> get copyWith =>
+      __$$GenresModelImplCopyWithImpl<_$GenresModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenresModelToJson(
+    return _$$GenresModelImplToJson(
       this,
     );
   }
@@ -152,10 +152,10 @@ class _$_GenresModel implements _GenresModel {
 
 abstract class _GenresModel implements GenresModel {
   const factory _GenresModel(
-      {required final int id, required final String name}) = _$_GenresModel;
+      {required final int id, required final String name}) = _$GenresModelImpl;
 
   factory _GenresModel.fromJson(Map<String, dynamic> json) =
-      _$_GenresModel.fromJson;
+      _$GenresModelImpl.fromJson;
 
   @override
   int get id;
@@ -163,6 +163,6 @@ abstract class _GenresModel implements GenresModel {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_GenresModelCopyWith<_$_GenresModel> get copyWith =>
+  _$$GenresModelImplCopyWith<_$GenresModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

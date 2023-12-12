@@ -1,60 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
-import 'package:pandovie/configuration/pandovie_configuration.dart';
 import 'package:pandovie/data/models/movie_model.dart';
-import 'package:pandovie/kit/custom_image_view.dart';
 import 'package:pandovie/kit/parallax_layout/background_switcher.dart';
-import 'package:pandovie/kit/swipe_list/swipe_list.dart';
-import 'package:pandovie/module/search/cubit/search_page_controller/search_page_controller_cubit.dart';
 import 'package:pandovie/module/search/widgets/back_botton.dart';
 import 'package:pandovie/module/search/widgets/movie_card.dart';
-import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
 
-class SearchDetectedState
-    extends OpenCubitWidgetBase<SearchPageControllerCubit> {
+class SearchDetectedState extends StatefulWidget {
   final List<MovieModel> movies;
 
-  SearchDetectedState({
+  const SearchDetectedState({
     super.key,
     required this.movies,
   });
 
   @override
-  Widget body(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // BlocBuilder<SearchPageControllerCubit, SearchPageControllerState>(
-        //   builder: (context, state) {
-        //     return state.when(
-        //       switcher: (index) {
-        //         return BackgroundSwitcher(
-        //           movie: moviesData[index],
-        //         );
-        //       },
-        //     );
-        //   },
-        // ),
-      
-          
+  State<SearchDetectedState> createState() => _SearchDetectedStateState();
+}
 
-          ListView.builder(
-            controller: listen(context).pageController,
-            itemCount: movies.length,
-            
-            // onPageChanged: cubitController.updatePage,
-            // padEnds: false,
-            itemBuilder: (context, index) {
-              return MovieCard(
-                movie: movies[index],
-              );
-            },
-          ),
-        
-        SearchBackButton(),
-      ],
+class _SearchDetectedStateState extends State<SearchDetectedState> {
+  int currentIndex = 0;
+  double pagePercent = 0;
+  int visualizedItems = 8;
+
+  late final PageController pageController;
+
+  @override
+  void initState() {
+    pageController = PageController(
+      viewportFraction: 1,
+      initialPage: currentIndex,
+    );
+    pagePercent = 0.0;
+    pageController.addListener(_pageListener);
+    super.initState();
+  }
+
+  void _pageListener() {
+    currentIndex = pageController.page!.floor();
+    pagePercent = (pageController.page! - currentIndex).abs();
+
+    setState(() {});
+  }
+
+  void updatePage(int index) {
+    currentIndex = index;
+
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          alignment: Alignment.center,
+          children: [
+            BackgroundSwitcher(
+              movie: widget.movies[currentIndex],
+            ),
+            PageView.builder(
+              controller: pageController,
+              itemCount: widget.movies.length,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: updatePage,
+              padEnds: false,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) {
+                return AnimatedBuilder(
+                  animation: pageController,
+                  builder: (context, child) {
+                    double value = 0.0;
+                    if (pageController.position.haveDimensions) {
+                      value = index.toDouble() - (pageController.page ?? 0);
+                      value = (value * 0.10).clamp(-1, 1);
+                    }
+                    return MovieCard(
+                      movie: widget.movies[index],
+                      value: value,
+                    );
+                  },
+                );
+              },
+            ),
+            SearchBackButton(),
+          ],
+        );
+      },
     );
   }
 }

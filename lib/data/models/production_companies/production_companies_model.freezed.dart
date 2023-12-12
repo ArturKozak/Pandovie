@@ -94,12 +94,12 @@ class _$ProductionCompaniesModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ProductionCompaniesModelCopyWith<$Res>
+abstract class _$$ProductionCompaniesModelImplCopyWith<$Res>
     implements $ProductionCompaniesModelCopyWith<$Res> {
-  factory _$$_ProductionCompaniesModelCopyWith(
-          _$_ProductionCompaniesModel value,
-          $Res Function(_$_ProductionCompaniesModel) then) =
-      __$$_ProductionCompaniesModelCopyWithImpl<$Res>;
+  factory _$$ProductionCompaniesModelImplCopyWith(
+          _$ProductionCompaniesModelImpl value,
+          $Res Function(_$ProductionCompaniesModelImpl) then) =
+      __$$ProductionCompaniesModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -111,12 +111,13 @@ abstract class _$$_ProductionCompaniesModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductionCompaniesModelCopyWithImpl<$Res>
+class __$$ProductionCompaniesModelImplCopyWithImpl<$Res>
     extends _$ProductionCompaniesModelCopyWithImpl<$Res,
-        _$_ProductionCompaniesModel>
-    implements _$$_ProductionCompaniesModelCopyWith<$Res> {
-  __$$_ProductionCompaniesModelCopyWithImpl(_$_ProductionCompaniesModel _value,
-      $Res Function(_$_ProductionCompaniesModel) _then)
+        _$ProductionCompaniesModelImpl>
+    implements _$$ProductionCompaniesModelImplCopyWith<$Res> {
+  __$$ProductionCompaniesModelImplCopyWithImpl(
+      _$ProductionCompaniesModelImpl _value,
+      $Res Function(_$ProductionCompaniesModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -128,7 +129,7 @@ class __$$_ProductionCompaniesModelCopyWithImpl<$Res>
     Object? logoPath = freezed,
     Object? originCountry = freezed,
   }) {
-    return _then(_$_ProductionCompaniesModel(
+    return _then(_$ProductionCompaniesModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -155,16 +156,16 @@ class __$$_ProductionCompaniesModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductionCompaniesModel implements _ProductionCompaniesModel {
-  const _$_ProductionCompaniesModel(
+class _$ProductionCompaniesModelImpl implements _ProductionCompaniesModel {
+  const _$ProductionCompaniesModelImpl(
       {required this.id,
       required this.name,
       this.logoPathRaw,
       @Uint8ListConverter() this.logoPath,
       this.originCountry});
 
-  factory _$_ProductionCompaniesModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductionCompaniesModelFromJson(json);
+  factory _$ProductionCompaniesModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductionCompaniesModelImplFromJson(json);
 
   @override
   final int id;
@@ -187,7 +188,7 @@ class _$_ProductionCompaniesModel implements _ProductionCompaniesModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductionCompaniesModel &&
+            other is _$ProductionCompaniesModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.logoPathRaw, logoPathRaw) ||
@@ -205,13 +206,13 @@ class _$_ProductionCompaniesModel implements _ProductionCompaniesModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductionCompaniesModelCopyWith<_$_ProductionCompaniesModel>
-      get copyWith => __$$_ProductionCompaniesModelCopyWithImpl<
-          _$_ProductionCompaniesModel>(this, _$identity);
+  _$$ProductionCompaniesModelImplCopyWith<_$ProductionCompaniesModelImpl>
+      get copyWith => __$$ProductionCompaniesModelImplCopyWithImpl<
+          _$ProductionCompaniesModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductionCompaniesModelToJson(
+    return _$$ProductionCompaniesModelImplToJson(
       this,
     );
   }
@@ -223,10 +224,10 @@ abstract class _ProductionCompaniesModel implements ProductionCompaniesModel {
       required final String name,
       final String? logoPathRaw,
       @Uint8ListConverter() final Uint8List? logoPath,
-      final String? originCountry}) = _$_ProductionCompaniesModel;
+      final String? originCountry}) = _$ProductionCompaniesModelImpl;
 
   factory _ProductionCompaniesModel.fromJson(Map<String, dynamic> json) =
-      _$_ProductionCompaniesModel.fromJson;
+      _$ProductionCompaniesModelImpl.fromJson;
 
   @override
   int get id;
@@ -241,6 +242,6 @@ abstract class _ProductionCompaniesModel implements ProductionCompaniesModel {
   String? get originCountry;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductionCompaniesModelCopyWith<_$_ProductionCompaniesModel>
+  _$$ProductionCompaniesModelImplCopyWith<_$ProductionCompaniesModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

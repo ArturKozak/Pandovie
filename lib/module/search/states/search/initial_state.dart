@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pandovie/kit/animated_list/animated_list.dart';
-import 'package:pandovie/kit/custom_image_view.dart';
 import 'package:pandovie/module/search/cubit/now_playing/now_playing_cubit.dart';
 import 'package:pandovie/module/search/cubit/search_movie/search_movie_cubit.dart';
 import 'package:pandovie/module/search/cubit/upcoing_movies/upcoming_movies_cubit.dart';
-import 'package:pandovie/resource/app_animations.dart';
-import 'package:pandovie/resource/app_icons.dart';
+import 'package:pandovie/module/search/widgets/custom_search_field.dart';
+import 'package:pandovie/navigation/auto_route.dart';
 import 'package:pandovie/resource/theme.dart';
 
 class SearchInitialState extends StatelessWidget {
@@ -24,66 +22,16 @@ class SearchInitialState extends StatelessWidget {
         height: 1.sh,
         width: 1.sw,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [.1, .3],
-            colors: [
-              AppTheme.actionColor,
-              AppTheme.primaryColor,
-            ],
-          ),
+          color: AppTheme.actionColor,
         ),
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ).r,
-              child: TextFormField(
-                cursorColor: AppTheme.primaryColor,
-                cursorWidth: 2.w,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppTheme.actionColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20).r,
-                    borderSide: BorderSide(
-                      color: AppTheme.primaryColor,
-                      width: 1.r,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20).r,
-                    borderSide: BorderSide(
-                      color: AppTheme.primaryColor,
-                      width: 1.r,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20).r,
-                    borderSide: BorderSide(
-                      color: AppTheme.primaryColor,
-                      width: 1.r,
-                    ),
-                  ),
-                  suffixIconConstraints: BoxConstraints(
-                    maxHeight: 50.h,
-                    maxWidth: 50.w,
-                  ),
-                  suffixIcon: CustomImageView(
-                    svgPath: AppIcons.search,
-                    color: AppTheme.primaryColor,
-                    margin: const EdgeInsets.only(right: 10).r,
-                  ),
-                ),
-                onFieldSubmitted:
-                    context.read<SearchMovieCubit>().searchMoviesByQuery,
-              ),
+            CustomSearchField(
+              onFieldSubmitted:
+                  context.read<SearchMovieCubit>().searchMoviesByQuery,
             ),
             Positioned(
-              bottom: 300.h,
+              bottom: 290.h,
               left: _horizontalSpace.w,
               right: _horizontalSpace.w,
               child: BlocBuilder<UpcomingMoviesCubit, UpcomingMoviesState>(
@@ -97,6 +45,10 @@ class SearchInitialState extends StatelessWidget {
                         child: ImageList(
                           results: results,
                           duration: 170,
+                          onTap: (movie) =>
+                              AppRouter.navigateToDetailsPage(movie),
+                          bgColor: AppTheme.primaryColor,
+                          nameColor: AppTheme.actionColor,
                           name: 'Upcoming movies',
                         ),
                       );
@@ -118,7 +70,11 @@ class SearchInitialState extends StatelessWidget {
                     detected: (results) {
                       return SingleChildScrollView(
                         child: ImageList(
+                          bgColor: AppTheme.actionColor,
+                          nameColor: AppTheme.primaryColor,
                           results: results,
+                          onTap: (movie) =>
+                              AppRouter.navigateToDetailsPage(movie),
                           duration: 170,
                           name: 'Popular in this week',
                         ),

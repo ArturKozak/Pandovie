@@ -68,22 +68,22 @@ class _$GenresContractCopyWithImpl<$Res, $Val extends GenresContract>
 }
 
 /// @nodoc
-abstract class _$$_GenresContractCopyWith<$Res>
+abstract class _$$GenresContractImplCopyWith<$Res>
     implements $GenresContractCopyWith<$Res> {
-  factory _$$_GenresContractCopyWith(
-          _$_GenresContract value, $Res Function(_$_GenresContract) then) =
-      __$$_GenresContractCopyWithImpl<$Res>;
+  factory _$$GenresContractImplCopyWith(_$GenresContractImpl value,
+          $Res Function(_$GenresContractImpl) then) =
+      __$$GenresContractImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$_GenresContractCopyWithImpl<$Res>
-    extends _$GenresContractCopyWithImpl<$Res, _$_GenresContract>
-    implements _$$_GenresContractCopyWith<$Res> {
-  __$$_GenresContractCopyWithImpl(
-      _$_GenresContract _value, $Res Function(_$_GenresContract) _then)
+class __$$GenresContractImplCopyWithImpl<$Res>
+    extends _$GenresContractCopyWithImpl<$Res, _$GenresContractImpl>
+    implements _$$GenresContractImplCopyWith<$Res> {
+  __$$GenresContractImplCopyWithImpl(
+      _$GenresContractImpl _value, $Res Function(_$GenresContractImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_GenresContractCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$_GenresContract(
+    return _then(_$GenresContractImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_GenresContractCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GenresContract implements _GenresContract {
-  const _$_GenresContract({required this.id, required this.name});
+class _$GenresContractImpl implements _GenresContract {
+  const _$GenresContractImpl({required this.id, required this.name});
 
-  factory _$_GenresContract.fromJson(Map<String, dynamic> json) =>
-      _$$_GenresContractFromJson(json);
+  factory _$GenresContractImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GenresContractImplFromJson(json);
 
   @override
   final int id;
@@ -127,7 +127,7 @@ class _$_GenresContract implements _GenresContract {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GenresContract &&
+            other is _$GenresContractImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name));
   }
@@ -139,12 +139,13 @@ class _$_GenresContract implements _GenresContract {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GenresContractCopyWith<_$_GenresContract> get copyWith =>
-      __$$_GenresContractCopyWithImpl<_$_GenresContract>(this, _$identity);
+  _$$GenresContractImplCopyWith<_$GenresContractImpl> get copyWith =>
+      __$$GenresContractImplCopyWithImpl<_$GenresContractImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GenresContractToJson(
+    return _$$GenresContractImplToJson(
       this,
     );
   }
@@ -152,10 +153,11 @@ class _$_GenresContract implements _GenresContract {
 
 abstract class _GenresContract implements GenresContract {
   const factory _GenresContract(
-      {required final int id, required final String name}) = _$_GenresContract;
+      {required final int id,
+      required final String name}) = _$GenresContractImpl;
 
   factory _GenresContract.fromJson(Map<String, dynamic> json) =
-      _$_GenresContract.fromJson;
+      _$GenresContractImpl.fromJson;
 
   @override
   int get id;
@@ -163,6 +165,6 @@ abstract class _GenresContract implements GenresContract {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_GenresContractCopyWith<_$_GenresContract> get copyWith =>
+  _$$GenresContractImplCopyWith<_$GenresContractImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

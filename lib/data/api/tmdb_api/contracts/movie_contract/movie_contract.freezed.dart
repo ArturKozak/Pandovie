@@ -147,11 +147,11 @@ class _$MovieContractCopyWithImpl<$Res, $Val extends MovieContract>
 }
 
 /// @nodoc
-abstract class _$$_MovieContractCopyWith<$Res>
+abstract class _$$MovieContractImplCopyWith<$Res>
     implements $MovieContractCopyWith<$Res> {
-  factory _$$_MovieContractCopyWith(
-          _$_MovieContract value, $Res Function(_$_MovieContract) then) =
-      __$$_MovieContractCopyWithImpl<$Res>;
+  factory _$$MovieContractImplCopyWith(
+          _$MovieContractImpl value, $Res Function(_$MovieContractImpl) then) =
+      __$$MovieContractImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -170,11 +170,11 @@ abstract class _$$_MovieContractCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MovieContractCopyWithImpl<$Res>
-    extends _$MovieContractCopyWithImpl<$Res, _$_MovieContract>
-    implements _$$_MovieContractCopyWith<$Res> {
-  __$$_MovieContractCopyWithImpl(
-      _$_MovieContract _value, $Res Function(_$_MovieContract) _then)
+class __$$MovieContractImplCopyWithImpl<$Res>
+    extends _$MovieContractCopyWithImpl<$Res, _$MovieContractImpl>
+    implements _$$MovieContractImplCopyWith<$Res> {
+  __$$MovieContractImplCopyWithImpl(
+      _$MovieContractImpl _value, $Res Function(_$MovieContractImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -193,7 +193,7 @@ class __$$_MovieContractCopyWithImpl<$Res>
     Object? backdropPath = freezed,
     Object? adult = null,
   }) {
-    return _then(_$_MovieContract(
+    return _then(_$MovieContractImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -248,8 +248,8 @@ class __$$_MovieContractCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MovieContract implements _MovieContract {
-  const _$_MovieContract(
+class _$MovieContractImpl implements _MovieContract {
+  const _$MovieContractImpl(
       {required this.id,
       required this.title,
       required this.popularity,
@@ -263,8 +263,8 @@ class _$_MovieContract implements _MovieContract {
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       this.adult = false});
 
-  factory _$_MovieContract.fromJson(Map<String, dynamic> json) =>
-      _$$_MovieContractFromJson(json);
+  factory _$MovieContractImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MovieContractImplFromJson(json);
 
   @override
   final int id;
@@ -308,7 +308,7 @@ class _$_MovieContract implements _MovieContract {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MovieContract &&
+            other is _$MovieContractImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.popularity, popularity) ||
@@ -352,12 +352,12 @@ class _$_MovieContract implements _MovieContract {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MovieContractCopyWith<_$_MovieContract> get copyWith =>
-      __$$_MovieContractCopyWithImpl<_$_MovieContract>(this, _$identity);
+  _$$MovieContractImplCopyWith<_$MovieContractImpl> get copyWith =>
+      __$$MovieContractImplCopyWithImpl<_$MovieContractImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MovieContractToJson(
+    return _$$MovieContractImplToJson(
       this,
     );
   }
@@ -376,10 +376,10 @@ abstract class _MovieContract implements MovieContract {
       @JsonKey(name: 'vote_average') final double? voteAverage,
       @JsonKey(name: 'original_title') final String? originalTitle,
       @JsonKey(name: 'backdrop_path') final String? backdropPath,
-      final bool adult}) = _$_MovieContract;
+      final bool adult}) = _$MovieContractImpl;
 
   factory _MovieContract.fromJson(Map<String, dynamic> json) =
-      _$_MovieContract.fromJson;
+      _$MovieContractImpl.fromJson;
 
   @override
   int get id;
@@ -414,6 +414,6 @@ abstract class _MovieContract implements MovieContract {
   bool get adult;
   @override
   @JsonKey(ignore: true)
-  _$$_MovieContractCopyWith<_$_MovieContract> get copyWith =>
+  _$$MovieContractImplCopyWith<_$MovieContractImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

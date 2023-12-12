@@ -35,7 +35,7 @@ class SearchMovieCubit extends Cubit<SearchMovieState> {
     );
   }
 
-  void addToCollection(MovieModel movie) {
+  Future<void> addToCollection(MovieModel movie) {
     return _collectionRepo.add(movie);
   }
 

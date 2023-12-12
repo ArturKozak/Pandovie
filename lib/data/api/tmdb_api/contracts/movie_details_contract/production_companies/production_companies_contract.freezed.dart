@@ -90,12 +90,12 @@ class _$ProductionCompaniesContractCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ProductionCompaniesContractCopyWith<$Res>
+abstract class _$$ProductionCompaniesContractImplCopyWith<$Res>
     implements $ProductionCompaniesContractCopyWith<$Res> {
-  factory _$$_ProductionCompaniesContractCopyWith(
-          _$_ProductionCompaniesContract value,
-          $Res Function(_$_ProductionCompaniesContract) then) =
-      __$$_ProductionCompaniesContractCopyWithImpl<$Res>;
+  factory _$$ProductionCompaniesContractImplCopyWith(
+          _$ProductionCompaniesContractImpl value,
+          $Res Function(_$ProductionCompaniesContractImpl) then) =
+      __$$ProductionCompaniesContractImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -106,13 +106,13 @@ abstract class _$$_ProductionCompaniesContractCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductionCompaniesContractCopyWithImpl<$Res>
+class __$$ProductionCompaniesContractImplCopyWithImpl<$Res>
     extends _$ProductionCompaniesContractCopyWithImpl<$Res,
-        _$_ProductionCompaniesContract>
-    implements _$$_ProductionCompaniesContractCopyWith<$Res> {
-  __$$_ProductionCompaniesContractCopyWithImpl(
-      _$_ProductionCompaniesContract _value,
-      $Res Function(_$_ProductionCompaniesContract) _then)
+        _$ProductionCompaniesContractImpl>
+    implements _$$ProductionCompaniesContractImplCopyWith<$Res> {
+  __$$ProductionCompaniesContractImplCopyWithImpl(
+      _$ProductionCompaniesContractImpl _value,
+      $Res Function(_$ProductionCompaniesContractImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_ProductionCompaniesContractCopyWithImpl<$Res>
     Object? logoPath = freezed,
     Object? originCountry = freezed,
   }) {
-    return _then(_$_ProductionCompaniesContract(
+    return _then(_$ProductionCompaniesContractImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -146,15 +146,17 @@ class __$$_ProductionCompaniesContractCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductionCompaniesContract implements _ProductionCompaniesContract {
-  const _$_ProductionCompaniesContract(
+class _$ProductionCompaniesContractImpl
+    implements _ProductionCompaniesContract {
+  const _$ProductionCompaniesContractImpl(
       {required this.id,
       required this.name,
       @JsonKey(name: 'logo_path') this.logoPath,
       @JsonKey(name: 'origin_country') this.originCountry});
 
-  factory _$_ProductionCompaniesContract.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductionCompaniesContractFromJson(json);
+  factory _$ProductionCompaniesContractImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ProductionCompaniesContractImplFromJson(json);
 
   @override
   final int id;
@@ -176,7 +178,7 @@ class _$_ProductionCompaniesContract implements _ProductionCompaniesContract {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductionCompaniesContract &&
+            other is _$ProductionCompaniesContractImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.logoPath, logoPath) ||
@@ -193,13 +195,13 @@ class _$_ProductionCompaniesContract implements _ProductionCompaniesContract {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductionCompaniesContractCopyWith<_$_ProductionCompaniesContract>
-      get copyWith => __$$_ProductionCompaniesContractCopyWithImpl<
-          _$_ProductionCompaniesContract>(this, _$identity);
+  _$$ProductionCompaniesContractImplCopyWith<_$ProductionCompaniesContractImpl>
+      get copyWith => __$$ProductionCompaniesContractImplCopyWithImpl<
+          _$ProductionCompaniesContractImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductionCompaniesContractToJson(
+    return _$$ProductionCompaniesContractImplToJson(
       this,
     );
   }
@@ -212,10 +214,10 @@ abstract class _ProductionCompaniesContract
           required final String name,
           @JsonKey(name: 'logo_path') final String? logoPath,
           @JsonKey(name: 'origin_country') final String? originCountry}) =
-      _$_ProductionCompaniesContract;
+      _$ProductionCompaniesContractImpl;
 
   factory _ProductionCompaniesContract.fromJson(Map<String, dynamic> json) =
-      _$_ProductionCompaniesContract.fromJson;
+      _$ProductionCompaniesContractImpl.fromJson;
 
   @override
   int get id;
@@ -229,6 +231,6 @@ abstract class _ProductionCompaniesContract
   String? get originCountry;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductionCompaniesContractCopyWith<_$_ProductionCompaniesContract>
+  _$$ProductionCompaniesContractImplCopyWith<_$ProductionCompaniesContractImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

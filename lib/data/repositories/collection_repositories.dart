@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
+import 'package:pandovie/data/client/pandovie_client.dart';
 import 'package:pandovie/data/models/movie_model.dart';
 
 @lazySingleton
@@ -36,12 +38,15 @@ class CollectionRepository {
   }
 
   @factoryMethod
-  void add(
+  Future<void> add(
     MovieModel model,
-  ) {
-    _moviesBox.put(model.id.toString(), model);
+  ) async {
+    final fullModel =
+        await GetIt.I<PandovieClient>().tmdbApi.getMovieImages(model: model);
 
-    _movies.add(model);
+    _moviesBox.put(fullModel.id.toString(), fullModel);
+
+    _movies.add(fullModel);
 
     _onAllMoviesStreamController.add(_movies);
   }

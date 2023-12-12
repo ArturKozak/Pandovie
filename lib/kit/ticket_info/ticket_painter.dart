@@ -24,7 +24,7 @@ class TicketPainter extends CustomPainter {
 
     final rightCutoutStartY = cutoutStartPos - _cutoutDiameter;
 
-    final dottedLineY = cutoutStartPos - _cutoutRadius;
+    final dottedLineY = cutoutStartPos - _cutoutRadius + 7;
 
     double dottedLineStartX = _cutoutRadius;
 
@@ -40,14 +40,14 @@ class TicketPainter extends CustomPainter {
       ..color = bgColor;
 
     final paintBorder = Paint()
-      ..strokeWidth = 1
+      ..strokeWidth = 4
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..color = borderColor;
 
     final paintDottedLine = Paint()
       ..color = borderColor.withOpacity(0.5)
-      ..strokeWidth = 1.2;
+      ..strokeWidth = 5;
 
     final path = Path();
 
@@ -102,4 +102,40 @@ class TicketPainter extends CustomPainter {
 
   @override
   bool shouldRebuildSemantics(TicketPainter oldDelegate) => false;
+}
+
+class TicketClipper extends CustomClipper<Path> {
+  static const _cornerGap = 25.0;
+  static const _cutoutRadius = 18.0;
+
+  @override
+  Path getClip(Size size) {
+    final maxWidth = size.width;
+    final maxHeight = size.height;
+
+    final path = Path();
+
+    path.moveTo(_cornerGap, 0);
+    path.lineTo(maxWidth - _cornerGap, 0);
+    _drawCornerArc(path, maxWidth, _cornerGap);
+    path.lineTo(maxWidth, maxHeight - _cornerGap);
+    _drawCornerArc(path, maxWidth - _cutoutRadius, maxHeight, clock: false);
+    path.lineTo(_cutoutRadius, maxHeight);
+    _drawCornerArc(path, 0, maxHeight - _cornerGap, clock: false);
+    path.lineTo(0, _cornerGap);
+    _drawCornerArc(path, _cornerGap, 0);
+
+    return path;
+  }
+
+  _drawCornerArc(Path path, double endPointX, double endPointY, {bool? clock}) {
+    path.arcToPoint(
+      Offset(endPointX, endPointY),
+      clockwise: clock ?? true,
+      radius: const Radius.circular(_cornerGap),
+    );
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

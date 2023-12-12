@@ -6,9 +6,9 @@ part of 'movie_details_contract.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MovieDetailsContract _$$_MovieDetailsContractFromJson(
+_$MovieDetailsContractImpl _$$MovieDetailsContractImplFromJson(
         Map<String, dynamic> json) =>
-    _$_MovieDetailsContract(
+    _$MovieDetailsContractImpl(
       budget: json['budget'] as int,
       genres: (json['genres'] as List<dynamic>)
           .map((e) => GenresContract.fromJson(e as Map<String, dynamic>))
@@ -22,8 +22,8 @@ _$_MovieDetailsContract _$$_MovieDetailsContractFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_MovieDetailsContractToJson(
-        _$_MovieDetailsContract instance) =>
+Map<String, dynamic> _$$MovieDetailsContractImplToJson(
+        _$MovieDetailsContractImpl instance) =>
     <String, dynamic>{
       'budget': instance.budget,
       'genres': instance.genres,

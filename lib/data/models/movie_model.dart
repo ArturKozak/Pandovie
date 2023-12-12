@@ -79,23 +79,20 @@ class MovieModel with _$MovieModel {
     MovieModel model,
   ) {
     return model.copyWith(
-      budget: contract.budget,
-      genres: contract.genres
-          .map(
-            (e) => GenresModel.fromContract(e),
-          )
-          .toList(),
-      revenue: contract.revenue,
-      runtime: contract.runtime,
-      status: contract.status,
-      productionCompanies: contract.productionCompanies != null
-          ? contract.productionCompanies!
-              .map(
-                (e) => ProductionCompaniesModel.fromContract(e),
-              )
-              .toList()
-          : null,
-    );
+        budget: contract.budget,
+        genres: contract.genres
+            .map(
+              (e) => GenresModel.fromContract(e),
+            )
+            .toList(),
+        revenue: contract.revenue,
+        runtime: contract.runtime,
+        status: contract.status,
+        productionCompanies: contract.productionCompanies
+            ?.map(
+              (e) => ProductionCompaniesModel.fromContract(e),
+            )
+            .toList());
   }
 
   static MovieModel fromHive(Map<String, Object?> json) {

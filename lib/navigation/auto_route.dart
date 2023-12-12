@@ -16,6 +16,7 @@ class AppRouter extends _$AppRouter {
   static const rootSignature = '/';
   static const homeRoute = 'home';
   static const collectionRoute = 'collection';
+  static const detailsRoute = '/details';
 
   @override
   List<AutoRoute> get routes => [
@@ -38,7 +39,7 @@ class AppRouter extends _$AppRouter {
         ),
         CustomRoute(
           page: DetailsMoviePageRoute.page,
-          path: '/details',
+          path: detailsRoute,
           transitionsBuilder: TransitionsBuilders.fadeIn,
         ),
       ];

@@ -180,9 +180,7 @@ class _RenderParallax extends RenderProxyBox {
   Decoration? _decoration;
 
   BoxFit get fit {
-    return (_scrollPosition!.axis == Axis.vertical)
-        ? BoxFit.fitWidth
-        : BoxFit.fitHeight;
+    return (_scrollPosition!.axis == Axis.vertical) ? BoxFit.fill : BoxFit.fill;
   }
 
   @override

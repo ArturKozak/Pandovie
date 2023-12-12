@@ -13,7 +13,7 @@ class SearchBackButton extends OpenCubitWidgetBase<SearchMovieCubit> {
   @override
   Widget body(BuildContext context) {
     return Positioned(
-      top: 40.h,
+      top: 50.h,
       left: 8.w,
       child: RotatedBox(
         quarterTurns: 2,

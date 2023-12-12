@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:pandovie/data/api/tmdb_api/tmdb_api_resource.dart';
 import 'package:pandovie/data/models/movie_model.dart';
+import 'package:pandovie/data/models/production_companies/production_companies_model.dart';
 import 'package:pandovie/extension/date_time_extension.dart';
+import 'package:pandovie/utils/image_helper.dart';
 
-
-
-class TMDBApi  {
+class TMDBApi {
   final String baseUrl;
   final Dio dio;
   late final TMDBApiResource _tmdbResource;
@@ -20,59 +20,33 @@ class TMDBApi  {
     );
   }
 
+  Future<MovieModel> getMovieImages({
+    required MovieModel model,
+  }) async {
+    final fullCompanyList = <ProductionCompaniesModel>[];
 
-  // Future<MovieModel> _getMovieImages({
-  //   required MovieModel model,
-  // }) async {
-  //   final result = await run<MovieModel>(
-  //     TMDBApiEvent.fetchImages,
-  //     {
-  //       'list': model,
-  //     },
-  //   );
+    if (model.productionCompanies != null &&
+        model.productionCompanies!.isNotEmpty) {
+      final companyImages = await Future.wait(
+        model.productionCompanies!.map((company) {
+          return ImageHelper.getNetworkImage(company.logoPathRaw);
+        }),
+      );
 
-  //   return result;
-  // }
+      for (var i = 0; i < model.productionCompanies!.length; i++) {
+        final fullCompanyModel = model.productionCompanies![i].copyWith(
+          logoPath: companyImages[i],
+        );
 
-  // static Function(dynamic event, dynamic data) tmdbApiHandlerProvider() {
-  //   return (event, data) async {
-  //     final encryptorEvent = event as TMDBApiEvent;
+        fullCompanyList.add(fullCompanyModel);
+      }
+    }
 
-  //     switch (encryptorEvent) {
-  //       case TMDBApiEvent.fetchImages:
-  //         final model = data['list'] as MovieModel;
-  //         //TODO:
-  //         // final fullCompanyList = <ProductionCompaniesModel>[];
-
-  //         // if (model.productionCompanies != null &&
-  //         //     model.productionCompanies!.isNotEmpty) {
-  //         //   final companyImages = await Future.wait(
-  //         //     model.productionCompanies!.map((company) {
-  //         //       return ImageHelper.getNetworkImage(company.logoPathRaw);
-  //         //     }),
-  //         //   );
-
-  //         //   for (var i = 0; i < model.productionCompanies!.length; i++) {
-  //         //     final fullCompanyModel = model.productionCompanies![i].copyWith(
-  //         //       logoPath: companyImages[i],
-  //         //     );
-
-  //         //     fullCompanyList.add(fullCompanyModel);
-  //         //   }
-  //         // }
-
-  //         return model;
-  //         // .copyWith(
-  //         //   productionCompanies: fullCompanyList,
-  //         //   posterImage:
-  //         //       await ImageHelper.getNetworkImage(model.posterImageRaw),
-  //         // );
-
-  //       default:
-  //         throw Exception('Unknown TMDB action!');
-  //     }
-  //   };
-  // }
+    return model.copyWith(
+      productionCompanies: fullCompanyList,
+      posterImage: await ImageHelper.getNetworkImage(model.posterImageRaw),
+    );
+  }
 
   Future<MovieModel> getMovieDetails({
     required MovieModel model,
@@ -87,8 +61,6 @@ class TMDBApi  {
       response,
       model,
     );
-
-    // return _getMovieImages(model: fullModel);
 
     return fullModel;
   }

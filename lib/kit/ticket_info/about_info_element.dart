@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pandovie/data/models/movie_model.dart';
-import 'package:pandovie/kit/custom_image_view.dart';
-import 'package:pandovie/kit/ticket_info/flex_info_separator.dart';
 import 'package:pandovie/resource/theme.dart';
 
-class AbputInfoElement extends StatelessWidget {
-  const AbputInfoElement({
+class AboutInfoElement extends StatelessWidget {
+  const AboutInfoElement({
     super.key,
     required this.movie,
-    required this.isrow,
+    required this.isDetails,
     required this.name,
     required this.value,
     required this.icons,
@@ -19,7 +17,7 @@ class AbputInfoElement extends StatelessWidget {
 
   final MovieModel movie;
   final String icons;
-  final bool isrow;
+  final bool isDetails;
   final String name;
   final String value;
   final bool isFitted;
@@ -29,121 +27,102 @@ class AbputInfoElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
-      child: isrow && isDate
-          ? Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                CustomImageView(
-                  svgPath: icons,
-                  color: AppTheme.controlColor,
-                  height: 18.h,
-                  width: 18.h,
-                ),
-                4.horizontalSpace,
-                Text(
-                  name,
-                  style: AppTheme.textStyle.copyWith(
-                    fontSize: 14.sp,
-                    color: AppTheme.actionColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const FlexInfoSeparator(),
-                SizedBox(
-                  width: 70.w,
-                  child: FittedBox(
-                    alignment: Alignment.center,
-                    child: Text(
-                      value,
-                      style: AppTheme.textStyle.copyWith(
-                        fontSize: 14.sp,
-                        color: AppTheme.controlColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          : AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              child: isrow
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        CustomImageView(
-                          svgPath: icons,
-                          color: AppTheme.controlColor,
-                          height: 18.h,
-                          width: 18.h,
-                        ),
-                        4.horizontalSpace,
-                        Text(
-                          name,
-                          style: AppTheme.textStyle.copyWith(
-                            fontSize: 14.sp,
-                            color: AppTheme.actionColor,
-                            fontWeight: FontWeight.w600,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: isDetails
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  isFitted
+                      ? FittedBox(
+                          alignment: Alignment.center,
+                          child: Text(
+                            value,
+                            style: AppTheme.textStyle.copyWith(
+                              fontSize: 16.sp,
+                              color: AppTheme.actionColor,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        const FlexInfoSeparator(),
-                        Text(
+                        )
+                      : Text(
                           value,
                           style: AppTheme.textStyle.copyWith(
-                            fontSize: 14.sp,
-                            color: AppTheme.controlColor,
+                            fontSize: 16.sp,
+                            color: AppTheme.actionColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                  isFitted
+                      ? FittedBox(
+                          alignment: Alignment.center,
+                          child: Text(
+                            name,
+                            style: AppTheme.textStyle.copyWith(
+                              fontSize: 10.sp,
+                              color: AppTheme.actionColor.withOpacity(.7),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          name,
+                          style: AppTheme.textStyle.copyWith(
+                            fontSize: 10.sp,
+                            color: AppTheme.actionColor.withOpacity(.7),
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        isFitted
-                            ? FittedBox(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  name,
-                                  style: AppTheme.textStyle.copyWith(
-                                    fontSize: 14.sp,
-                                    color: AppTheme.actionColor,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            : Text(
-                                name,
-                                style: AppTheme.textStyle.copyWith(
-                                  fontSize: 14.sp,
-                                  color: AppTheme.actionColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                        isFitted
-                            ? FittedBox(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  value,
-                                  style: AppTheme.textStyle.copyWith(
-                                    fontSize: 14.sp,
-                                    color: AppTheme.controlColor,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            : Text(
-                                value,
-                                style: AppTheme.textStyle.copyWith(
-                                  fontSize: 14.sp,
-                                  color: AppTheme.controlColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                      ],
-                    ),
-            ),
+                  10.verticalSpace,
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  isFitted
+                      ? FittedBox(
+                          alignment: Alignment.center,
+                          child: Text(
+                            name,
+                            style: AppTheme.textStyle.copyWith(
+                              fontSize: 14.sp,
+                              color: AppTheme.primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          name,
+                          style: AppTheme.textStyle.copyWith(
+                            fontSize: 16.sp,
+                            color: AppTheme.primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                  isFitted
+                      ? FittedBox(
+                          alignment: Alignment.center,
+                          child: Text(
+                            value,
+                            style: AppTheme.textStyle.copyWith(
+                              fontSize: 14.sp,
+                              color: AppTheme.primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        )
+                      : Text(
+                          value,
+                          style: AppTheme.textStyle.copyWith(
+                            fontSize: 22.sp,
+                            color: AppTheme.primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ],
+              ),
+      ),
     );
   }
 }

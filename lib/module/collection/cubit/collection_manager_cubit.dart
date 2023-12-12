@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pandovie/data/models/movie_model.dart';
 import 'package:pandovie/data/repositories/collection_repositories.dart';
+import 'package:pandovie/module/root/cubit/root_cubit.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_impl.dart';
 
 part 'collection_manager_state.dart';
@@ -43,5 +44,9 @@ class CollectionManagerCubit extends Cubit<CollectionManagerState> {
     OpenCubit.delete<CollectionManagerCubit>();
 
     return super.close();
+  }
+
+  void openDrawerMenu() {
+    return OpenCubit.find<RootCubit>().openMenuDrawer();
   }
 }

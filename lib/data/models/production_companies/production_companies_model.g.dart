@@ -6,9 +6,9 @@ part of 'production_companies_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProductionCompaniesModel _$$_ProductionCompaniesModelFromJson(
+_$ProductionCompaniesModelImpl _$$ProductionCompaniesModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ProductionCompaniesModel(
+    _$ProductionCompaniesModelImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       logoPathRaw: json['logoPathRaw'] as String?,
@@ -17,8 +17,8 @@ _$_ProductionCompaniesModel _$$_ProductionCompaniesModelFromJson(
       originCountry: json['originCountry'] as String?,
     );
 
-Map<String, dynamic> _$$_ProductionCompaniesModelToJson(
-        _$_ProductionCompaniesModel instance) =>
+Map<String, dynamic> _$$ProductionCompaniesModelImplToJson(
+        _$ProductionCompaniesModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

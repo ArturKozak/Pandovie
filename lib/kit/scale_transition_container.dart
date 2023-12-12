@@ -27,8 +27,10 @@ class _PageTransitionController {
         scaleAnimationController!.reverse();
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => routePage,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) => routePage,
+            transitionDuration: Duration.zero,
+            reverseTransitionDuration: Duration.zero,
           ),
         );
 
@@ -47,13 +49,8 @@ class PageTransitionButton extends StatefulWidget {
     required this.onStateChanged,
   }) : super(key: key);
 
-  /// Provide [TickerProvider] for animation purpose
   final TickerProvider vsync;
-
-  /// Child property. Pass your button here.
   final Widget child;
-
-  /// Pass the widget of the next screen where you want to navigate the user.
   final Widget nextPage;
 
   final void Function(bool) onStateChanged;

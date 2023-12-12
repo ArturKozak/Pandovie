@@ -77,24 +77,25 @@ class _$CollectionManagerStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$CollectionManagerStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$CollectionManagerStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -104,7 +105,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -175,25 +176,27 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements CollectionManagerState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_UpdatedMovieCollectionCopyWith<$Res> {
-  factory _$$_UpdatedMovieCollectionCopyWith(_$_UpdatedMovieCollection value,
-          $Res Function(_$_UpdatedMovieCollection) then) =
-      __$$_UpdatedMovieCollectionCopyWithImpl<$Res>;
+abstract class _$$UpdatedMovieCollectionImplCopyWith<$Res> {
+  factory _$$UpdatedMovieCollectionImplCopyWith(
+          _$UpdatedMovieCollectionImpl value,
+          $Res Function(_$UpdatedMovieCollectionImpl) then) =
+      __$$UpdatedMovieCollectionImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<MovieModel> movies});
 }
 
 /// @nodoc
-class __$$_UpdatedMovieCollectionCopyWithImpl<$Res>
+class __$$UpdatedMovieCollectionImplCopyWithImpl<$Res>
     extends _$CollectionManagerStateCopyWithImpl<$Res,
-        _$_UpdatedMovieCollection>
-    implements _$$_UpdatedMovieCollectionCopyWith<$Res> {
-  __$$_UpdatedMovieCollectionCopyWithImpl(_$_UpdatedMovieCollection _value,
-      $Res Function(_$_UpdatedMovieCollection) _then)
+        _$UpdatedMovieCollectionImpl>
+    implements _$$UpdatedMovieCollectionImplCopyWith<$Res> {
+  __$$UpdatedMovieCollectionImplCopyWithImpl(
+      _$UpdatedMovieCollectionImpl _value,
+      $Res Function(_$UpdatedMovieCollectionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -201,7 +204,7 @@ class __$$_UpdatedMovieCollectionCopyWithImpl<$Res>
   $Res call({
     Object? movies = null,
   }) {
-    return _then(_$_UpdatedMovieCollection(
+    return _then(_$UpdatedMovieCollectionImpl(
       null == movies
           ? _value._movies
           : movies // ignore: cast_nullable_to_non_nullable
@@ -212,8 +215,8 @@ class __$$_UpdatedMovieCollectionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdatedMovieCollection implements _UpdatedMovieCollection {
-  const _$_UpdatedMovieCollection(final List<MovieModel> movies)
+class _$UpdatedMovieCollectionImpl implements _UpdatedMovieCollection {
+  const _$UpdatedMovieCollectionImpl(final List<MovieModel> movies)
       : _movies = movies;
 
   final List<MovieModel> _movies;
@@ -233,7 +236,7 @@ class _$_UpdatedMovieCollection implements _UpdatedMovieCollection {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdatedMovieCollection &&
+            other is _$UpdatedMovieCollectionImpl &&
             const DeepCollectionEquality().equals(other._movies, _movies));
   }
 
@@ -244,9 +247,9 @@ class _$_UpdatedMovieCollection implements _UpdatedMovieCollection {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdatedMovieCollectionCopyWith<_$_UpdatedMovieCollection> get copyWith =>
-      __$$_UpdatedMovieCollectionCopyWithImpl<_$_UpdatedMovieCollection>(
-          this, _$identity);
+  _$$UpdatedMovieCollectionImplCopyWith<_$UpdatedMovieCollectionImpl>
+      get copyWith => __$$UpdatedMovieCollectionImplCopyWithImpl<
+          _$UpdatedMovieCollectionImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -314,10 +317,10 @@ class _$_UpdatedMovieCollection implements _UpdatedMovieCollection {
 
 abstract class _UpdatedMovieCollection implements CollectionManagerState {
   const factory _UpdatedMovieCollection(final List<MovieModel> movies) =
-      _$_UpdatedMovieCollection;
+      _$UpdatedMovieCollectionImpl;
 
   List<MovieModel> get movies;
   @JsonKey(ignore: true)
-  _$$_UpdatedMovieCollectionCopyWith<_$_UpdatedMovieCollection> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UpdatedMovieCollectionImplCopyWith<_$UpdatedMovieCollectionImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

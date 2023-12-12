@@ -30,7 +30,7 @@ class BackgroundSwitcher extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: CachedNetworkImageProvider(
-                  '${PandovieConfiguration.imageUrl}${movie.posterImageRaw!}',
+              '${PandovieConfiguration.imageUrl}${movie.posterImageRaw!}',
             ),
             fit: BoxFit.cover,
           ),

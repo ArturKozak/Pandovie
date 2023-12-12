@@ -16,11 +16,27 @@ class SearchPageControllerCubit extends Cubit<SearchPageControllerState> {
   final String? tag;
 
   int currentIndex = 0;
+  double pagePercent = 0;
+  int visualizedItems = 4;
 
   late final PageController pageController;
 
   void init() {
-    pageController = PageController(viewportFraction: 1);
+    pageController = PageController(
+      viewportFraction: 1 / visualizedItems,
+      initialPage: currentIndex,
+    );
+    pagePercent = 0.0;
+    pageController.addListener(_pageListener);
+  }
+
+  void _pageListener() {
+    currentIndex = pageController.page!.floor();
+    pagePercent = (pageController.page! - currentIndex).abs();
+
+    emit(
+      SearchPageControllerState.switcher(currentIndex),
+    );
   }
 
   void updatePage(int index) {

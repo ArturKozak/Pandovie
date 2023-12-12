@@ -81,24 +81,25 @@ class _$SearchMovieStateCopyWithImpl<$Res, $Val extends SearchMovieState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$SearchMovieStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$SearchMovieStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -108,7 +109,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -184,29 +185,29 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements SearchMovieState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_SearchingCopyWith<$Res> {
-  factory _$$_SearchingCopyWith(
-          _$_Searching value, $Res Function(_$_Searching) then) =
-      __$$_SearchingCopyWithImpl<$Res>;
+abstract class _$$SearchingImplCopyWith<$Res> {
+  factory _$$SearchingImplCopyWith(
+          _$SearchingImpl value, $Res Function(_$SearchingImpl) then) =
+      __$$SearchingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SearchingCopyWithImpl<$Res>
-    extends _$SearchMovieStateCopyWithImpl<$Res, _$_Searching>
-    implements _$$_SearchingCopyWith<$Res> {
-  __$$_SearchingCopyWithImpl(
-      _$_Searching _value, $Res Function(_$_Searching) _then)
+class __$$SearchingImplCopyWithImpl<$Res>
+    extends _$SearchMovieStateCopyWithImpl<$Res, _$SearchingImpl>
+    implements _$$SearchingImplCopyWith<$Res> {
+  __$$SearchingImplCopyWithImpl(
+      _$SearchingImpl _value, $Res Function(_$SearchingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Searching implements _Searching {
-  const _$_Searching();
+class _$SearchingImpl implements _Searching {
+  const _$SearchingImpl();
 
   @override
   String toString() {
@@ -216,7 +217,7 @@ class _$_Searching implements _Searching {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Searching);
+        (other.runtimeType == runtimeType && other is _$SearchingImpl);
   }
 
   @override
@@ -292,24 +293,24 @@ class _$_Searching implements _Searching {
 }
 
 abstract class _Searching implements SearchMovieState {
-  const factory _Searching() = _$_Searching;
+  const factory _Searching() = _$SearchingImpl;
 }
 
 /// @nodoc
-abstract class _$$_DetectedCopyWith<$Res> {
-  factory _$$_DetectedCopyWith(
-          _$_Detected value, $Res Function(_$_Detected) then) =
-      __$$_DetectedCopyWithImpl<$Res>;
+abstract class _$$DetectedImplCopyWith<$Res> {
+  factory _$$DetectedImplCopyWith(
+          _$DetectedImpl value, $Res Function(_$DetectedImpl) then) =
+      __$$DetectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<MovieModel> movies});
 }
 
 /// @nodoc
-class __$$_DetectedCopyWithImpl<$Res>
-    extends _$SearchMovieStateCopyWithImpl<$Res, _$_Detected>
-    implements _$$_DetectedCopyWith<$Res> {
-  __$$_DetectedCopyWithImpl(
-      _$_Detected _value, $Res Function(_$_Detected) _then)
+class __$$DetectedImplCopyWithImpl<$Res>
+    extends _$SearchMovieStateCopyWithImpl<$Res, _$DetectedImpl>
+    implements _$$DetectedImplCopyWith<$Res> {
+  __$$DetectedImplCopyWithImpl(
+      _$DetectedImpl _value, $Res Function(_$DetectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +318,7 @@ class __$$_DetectedCopyWithImpl<$Res>
   $Res call({
     Object? movies = null,
   }) {
-    return _then(_$_Detected(
+    return _then(_$DetectedImpl(
       null == movies
           ? _value._movies
           : movies // ignore: cast_nullable_to_non_nullable
@@ -328,8 +329,8 @@ class __$$_DetectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Detected implements _Detected {
-  const _$_Detected(final List<MovieModel> movies) : _movies = movies;
+class _$DetectedImpl implements _Detected {
+  const _$DetectedImpl(final List<MovieModel> movies) : _movies = movies;
 
   final List<MovieModel> _movies;
   @override
@@ -348,7 +349,7 @@ class _$_Detected implements _Detected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Detected &&
+            other is _$DetectedImpl &&
             const DeepCollectionEquality().equals(other._movies, _movies));
   }
 
@@ -359,8 +360,8 @@ class _$_Detected implements _Detected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetectedCopyWith<_$_Detected> get copyWith =>
-      __$$_DetectedCopyWithImpl<_$_Detected>(this, _$identity);
+  _$$DetectedImplCopyWith<_$DetectedImpl> get copyWith =>
+      __$$DetectedImplCopyWithImpl<_$DetectedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -432,10 +433,10 @@ class _$_Detected implements _Detected {
 }
 
 abstract class _Detected implements SearchMovieState {
-  const factory _Detected(final List<MovieModel> movies) = _$_Detected;
+  const factory _Detected(final List<MovieModel> movies) = _$DetectedImpl;
 
   List<MovieModel> get movies;
   @JsonKey(ignore: true)
-  _$$_DetectedCopyWith<_$_Detected> get copyWith =>
+  _$$DetectedImplCopyWith<_$DetectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

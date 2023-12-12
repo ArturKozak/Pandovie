@@ -6,17 +6,17 @@ part of 'production_companies_contract.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProductionCompaniesContract _$$_ProductionCompaniesContractFromJson(
+_$ProductionCompaniesContractImpl _$$ProductionCompaniesContractImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ProductionCompaniesContract(
+    _$ProductionCompaniesContractImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       logoPath: json['logo_path'] as String?,
       originCountry: json['origin_country'] as String?,
     );
 
-Map<String, dynamic> _$$_ProductionCompaniesContractToJson(
-        _$_ProductionCompaniesContract instance) =>
+Map<String, dynamic> _$$ProductionCompaniesContractImplToJson(
+        _$ProductionCompaniesContractImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

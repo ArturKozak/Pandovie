@@ -64,24 +64,25 @@ class _$MoviesCollectionContractCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_MoviesCollectionContractCopyWith<$Res>
+abstract class _$$MoviesCollectionContractImplCopyWith<$Res>
     implements $MoviesCollectionContractCopyWith<$Res> {
-  factory _$$_MoviesCollectionContractCopyWith(
-          _$_MoviesCollectionContract value,
-          $Res Function(_$_MoviesCollectionContract) then) =
-      __$$_MoviesCollectionContractCopyWithImpl<$Res>;
+  factory _$$MoviesCollectionContractImplCopyWith(
+          _$MoviesCollectionContractImpl value,
+          $Res Function(_$MoviesCollectionContractImpl) then) =
+      __$$MoviesCollectionContractImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<MovieContract> results});
 }
 
 /// @nodoc
-class __$$_MoviesCollectionContractCopyWithImpl<$Res>
+class __$$MoviesCollectionContractImplCopyWithImpl<$Res>
     extends _$MoviesCollectionContractCopyWithImpl<$Res,
-        _$_MoviesCollectionContract>
-    implements _$$_MoviesCollectionContractCopyWith<$Res> {
-  __$$_MoviesCollectionContractCopyWithImpl(_$_MoviesCollectionContract _value,
-      $Res Function(_$_MoviesCollectionContract) _then)
+        _$MoviesCollectionContractImpl>
+    implements _$$MoviesCollectionContractImplCopyWith<$Res> {
+  __$$MoviesCollectionContractImplCopyWithImpl(
+      _$MoviesCollectionContractImpl _value,
+      $Res Function(_$MoviesCollectionContractImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -89,7 +90,7 @@ class __$$_MoviesCollectionContractCopyWithImpl<$Res>
   $Res call({
     Object? results = null,
   }) {
-    return _then(_$_MoviesCollectionContract(
+    return _then(_$MoviesCollectionContractImpl(
       results: null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -100,13 +101,13 @@ class __$$_MoviesCollectionContractCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_MoviesCollectionContract implements _MoviesCollectionContract {
-  const _$_MoviesCollectionContract(
+class _$MoviesCollectionContractImpl implements _MoviesCollectionContract {
+  const _$MoviesCollectionContractImpl(
       {required final List<MovieContract> results})
       : _results = results;
 
-  factory _$_MoviesCollectionContract.fromJson(Map<String, dynamic> json) =>
-      _$$_MoviesCollectionContractFromJson(json);
+  factory _$MoviesCollectionContractImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MoviesCollectionContractImplFromJson(json);
 
   final List<MovieContract> _results;
   @override
@@ -125,7 +126,7 @@ class _$_MoviesCollectionContract implements _MoviesCollectionContract {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MoviesCollectionContract &&
+            other is _$MoviesCollectionContractImpl &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
@@ -137,13 +138,13 @@ class _$_MoviesCollectionContract implements _MoviesCollectionContract {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MoviesCollectionContractCopyWith<_$_MoviesCollectionContract>
-      get copyWith => __$$_MoviesCollectionContractCopyWithImpl<
-          _$_MoviesCollectionContract>(this, _$identity);
+  _$$MoviesCollectionContractImplCopyWith<_$MoviesCollectionContractImpl>
+      get copyWith => __$$MoviesCollectionContractImplCopyWithImpl<
+          _$MoviesCollectionContractImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MoviesCollectionContractToJson(
+    return _$$MoviesCollectionContractImplToJson(
       this,
     );
   }
@@ -152,15 +153,15 @@ class _$_MoviesCollectionContract implements _MoviesCollectionContract {
 abstract class _MoviesCollectionContract implements MoviesCollectionContract {
   const factory _MoviesCollectionContract(
           {required final List<MovieContract> results}) =
-      _$_MoviesCollectionContract;
+      _$MoviesCollectionContractImpl;
 
   factory _MoviesCollectionContract.fromJson(Map<String, dynamic> json) =
-      _$_MoviesCollectionContract.fromJson;
+      _$MoviesCollectionContractImpl.fromJson;
 
   @override
   List<MovieContract> get results;
   @override
   @JsonKey(ignore: true)
-  _$$_MoviesCollectionContractCopyWith<_$_MoviesCollectionContract>
+  _$$MoviesCollectionContractImplCopyWith<_$MoviesCollectionContractImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

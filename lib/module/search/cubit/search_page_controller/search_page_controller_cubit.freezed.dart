@@ -90,22 +90,22 @@ class _$SearchPageControllerStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SwitcherCopyWith<$Res>
+abstract class _$$SwitcherImplCopyWith<$Res>
     implements $SearchPageControllerStateCopyWith<$Res> {
-  factory _$$_SwitcherCopyWith(
-          _$_Switcher value, $Res Function(_$_Switcher) then) =
-      __$$_SwitcherCopyWithImpl<$Res>;
+  factory _$$SwitcherImplCopyWith(
+          _$SwitcherImpl value, $Res Function(_$SwitcherImpl) then) =
+      __$$SwitcherImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int index});
 }
 
 /// @nodoc
-class __$$_SwitcherCopyWithImpl<$Res>
-    extends _$SearchPageControllerStateCopyWithImpl<$Res, _$_Switcher>
-    implements _$$_SwitcherCopyWith<$Res> {
-  __$$_SwitcherCopyWithImpl(
-      _$_Switcher _value, $Res Function(_$_Switcher) _then)
+class __$$SwitcherImplCopyWithImpl<$Res>
+    extends _$SearchPageControllerStateCopyWithImpl<$Res, _$SwitcherImpl>
+    implements _$$SwitcherImplCopyWith<$Res> {
+  __$$SwitcherImplCopyWithImpl(
+      _$SwitcherImpl _value, $Res Function(_$SwitcherImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +113,7 @@ class __$$_SwitcherCopyWithImpl<$Res>
   $Res call({
     Object? index = null,
   }) {
-    return _then(_$_Switcher(
+    return _then(_$SwitcherImpl(
       null == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ class __$$_SwitcherCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Switcher implements _Switcher {
-  const _$_Switcher(this.index);
+class _$SwitcherImpl implements _Switcher {
+  const _$SwitcherImpl(this.index);
 
   @override
   final int index;
@@ -139,7 +139,7 @@ class _$_Switcher implements _Switcher {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Switcher &&
+            other is _$SwitcherImpl &&
             (identical(other.index, index) || other.index == index));
   }
 
@@ -149,8 +149,8 @@ class _$_Switcher implements _Switcher {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SwitcherCopyWith<_$_Switcher> get copyWith =>
-      __$$_SwitcherCopyWithImpl<_$_Switcher>(this, _$identity);
+  _$$SwitcherImplCopyWith<_$SwitcherImpl> get copyWith =>
+      __$$SwitcherImplCopyWithImpl<_$SwitcherImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -210,12 +210,12 @@ class _$_Switcher implements _Switcher {
 }
 
 abstract class _Switcher implements SearchPageControllerState {
-  const factory _Switcher(final int index) = _$_Switcher;
+  const factory _Switcher(final int index) = _$SwitcherImpl;
 
   @override
   int get index;
   @override
   @JsonKey(ignore: true)
-  _$$_SwitcherCopyWith<_$_Switcher> get copyWith =>
+  _$$SwitcherImplCopyWith<_$SwitcherImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

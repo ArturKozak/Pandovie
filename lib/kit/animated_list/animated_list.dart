@@ -13,11 +13,17 @@ class ImageList extends StatefulWidget {
     this.duration = 30,
     required this.results,
     required this.name,
+    required this.nameColor,
+    required this.bgColor,
+    required this.onTap,
   }) : super(key: key);
 
   final List<MovieModel> results;
   final int duration;
   final String name;
+  final Color bgColor;
+  final Color nameColor;
+  final void Function(MovieModel) onTap;
 
   @override
   State<ImageList> createState() => _ImageListState();
@@ -26,9 +32,16 @@ class ImageList extends StatefulWidget {
 class _ImageListState extends State<ImageList> {
   static const _leftTextPadding = 60.0;
   static const _leftBottomPadding = 5.0;
+  static const _borderRadius = 20.0;
 
-  static final _height = 290.h;
-  static final _width = 190.w;
+  static final _height = 310.h;
+  static final _width = 160.w;
+
+  static final _listPaddings = const EdgeInsets.only(
+    left: 25,
+    right: 25,
+    bottom: 30,
+  ).r;
 
   final _scrollController = ScrollController();
 
@@ -82,7 +95,14 @@ class _ImageListState extends State<ImageList> {
   Widget build(BuildContext context) {
     return Transform.rotate(
       angle: pi * 1.95,
-      child: SizedBox(
+      child: Container(
+        decoration: BoxDecoration(
+          color: widget.bgColor,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ).r,
+        ),
         height: _height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +116,7 @@ class _ImageListState extends State<ImageList> {
                 widget.name,
                 style: AppTheme.textStyle.copyWith(
                   fontSize: 24.sp,
-                  color: AppTheme.actionColor,
+                  color: widget.nameColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -104,19 +124,42 @@ class _ImageListState extends State<ImageList> {
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
-                padding: const EdgeInsets.symmetric(horizontal: 25).r,
+                padding: _listPaddings,
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 itemCount: widget.results.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      final currentScrollPosition = _scrollController.offset;
+                      final endScrollPosition =
+                          _scrollController.position.maxScrollExtent;
+                      final beginScrollPosition =
+                          _scrollController.position.minScrollExtent;
+
+                      if (currentScrollPosition < endScrollPosition / 2) {
+                        _scrollController.animateTo(
+                          endScrollPosition,
+                          duration: Duration(seconds: widget.duration),
+                          curve: Curves.linear,
+                        );
+                      }
+                      if (currentScrollPosition > endScrollPosition / 2) {
+                        _scrollController.animateTo(
+                          beginScrollPosition,
+                          duration: Duration(seconds: widget.duration),
+                          curve: Curves.linear,
+                        );
+                      }
+
+                      widget.onTap.call(widget.results[index]);
+                    },
                     child: Container(
                       width: _width,
                       margin: const EdgeInsets.all(4).r,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20).r,
+                        borderRadius: BorderRadius.circular(_borderRadius).r,
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
                             '${PandovieConfiguration.imageUrl}${widget.results[index].posterImageRaw!}',

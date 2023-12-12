@@ -88,22 +88,22 @@ class _$RootStateCopyWithImpl<$Res, $Val extends RootState>
 }
 
 /// @nodoc
-abstract class _$$_UpdateMenutypeCopyWith<$Res>
+abstract class _$$UpdateMenutypeImplCopyWith<$Res>
     implements $RootStateCopyWith<$Res> {
-  factory _$$_UpdateMenutypeCopyWith(
-          _$_UpdateMenutype value, $Res Function(_$_UpdateMenutype) then) =
-      __$$_UpdateMenutypeCopyWithImpl<$Res>;
+  factory _$$UpdateMenutypeImplCopyWith(_$UpdateMenutypeImpl value,
+          $Res Function(_$UpdateMenutypeImpl) then) =
+      __$$UpdateMenutypeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({DrawerMenuType type});
 }
 
 /// @nodoc
-class __$$_UpdateMenutypeCopyWithImpl<$Res>
-    extends _$RootStateCopyWithImpl<$Res, _$_UpdateMenutype>
-    implements _$$_UpdateMenutypeCopyWith<$Res> {
-  __$$_UpdateMenutypeCopyWithImpl(
-      _$_UpdateMenutype _value, $Res Function(_$_UpdateMenutype) _then)
+class __$$UpdateMenutypeImplCopyWithImpl<$Res>
+    extends _$RootStateCopyWithImpl<$Res, _$UpdateMenutypeImpl>
+    implements _$$UpdateMenutypeImplCopyWith<$Res> {
+  __$$UpdateMenutypeImplCopyWithImpl(
+      _$UpdateMenutypeImpl _value, $Res Function(_$UpdateMenutypeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$_UpdateMenutypeCopyWithImpl<$Res>
   $Res call({
     Object? type = null,
   }) {
-    return _then(_$_UpdateMenutype(
+    return _then(_$UpdateMenutypeImpl(
       null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -122,8 +122,8 @@ class __$$_UpdateMenutypeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdateMenutype implements _UpdateMenutype {
-  const _$_UpdateMenutype(this.type);
+class _$UpdateMenutypeImpl implements _UpdateMenutype {
+  const _$UpdateMenutypeImpl(this.type);
 
   @override
   final DrawerMenuType type;
@@ -137,7 +137,7 @@ class _$_UpdateMenutype implements _UpdateMenutype {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateMenutype &&
+            other is _$UpdateMenutypeImpl &&
             (identical(other.type, type) || other.type == type));
   }
 
@@ -147,8 +147,9 @@ class _$_UpdateMenutype implements _UpdateMenutype {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UpdateMenutypeCopyWith<_$_UpdateMenutype> get copyWith =>
-      __$$_UpdateMenutypeCopyWithImpl<_$_UpdateMenutype>(this, _$identity);
+  _$$UpdateMenutypeImplCopyWith<_$UpdateMenutypeImpl> get copyWith =>
+      __$$UpdateMenutypeImplCopyWithImpl<_$UpdateMenutypeImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -208,12 +209,13 @@ class _$_UpdateMenutype implements _UpdateMenutype {
 }
 
 abstract class _UpdateMenutype implements RootState {
-  const factory _UpdateMenutype(final DrawerMenuType type) = _$_UpdateMenutype;
+  const factory _UpdateMenutype(final DrawerMenuType type) =
+      _$UpdateMenutypeImpl;
 
   @override
   DrawerMenuType get type;
   @override
   @JsonKey(ignore: true)
-  _$$_UpdateMenutypeCopyWith<_$_UpdateMenutype> get copyWith =>
+  _$$UpdateMenutypeImplCopyWith<_$UpdateMenutypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

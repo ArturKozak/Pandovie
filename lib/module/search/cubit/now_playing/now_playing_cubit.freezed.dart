@@ -75,24 +75,25 @@ class _$NowPlayingStateCopyWithImpl<$Res, $Val extends NowPlayingState>
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$NowPlayingStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$NowPlayingStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
 
   @override
   String toString() {
@@ -102,7 +103,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Initial);
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
   }
 
   @override
@@ -172,24 +173,24 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements NowPlayingState {
-  const factory _Initial() = _$_Initial;
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_DetectedCopyWith<$Res> {
-  factory _$$_DetectedCopyWith(
-          _$_Detected value, $Res Function(_$_Detected) then) =
-      __$$_DetectedCopyWithImpl<$Res>;
+abstract class _$$DetectedImplCopyWith<$Res> {
+  factory _$$DetectedImplCopyWith(
+          _$DetectedImpl value, $Res Function(_$DetectedImpl) then) =
+      __$$DetectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<MovieModel> results});
 }
 
 /// @nodoc
-class __$$_DetectedCopyWithImpl<$Res>
-    extends _$NowPlayingStateCopyWithImpl<$Res, _$_Detected>
-    implements _$$_DetectedCopyWith<$Res> {
-  __$$_DetectedCopyWithImpl(
-      _$_Detected _value, $Res Function(_$_Detected) _then)
+class __$$DetectedImplCopyWithImpl<$Res>
+    extends _$NowPlayingStateCopyWithImpl<$Res, _$DetectedImpl>
+    implements _$$DetectedImplCopyWith<$Res> {
+  __$$DetectedImplCopyWithImpl(
+      _$DetectedImpl _value, $Res Function(_$DetectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -197,7 +198,7 @@ class __$$_DetectedCopyWithImpl<$Res>
   $Res call({
     Object? results = null,
   }) {
-    return _then(_$_Detected(
+    return _then(_$DetectedImpl(
       null == results
           ? _value._results
           : results // ignore: cast_nullable_to_non_nullable
@@ -208,8 +209,8 @@ class __$$_DetectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Detected implements _Detected {
-  const _$_Detected(final List<MovieModel> results) : _results = results;
+class _$DetectedImpl implements _Detected {
+  const _$DetectedImpl(final List<MovieModel> results) : _results = results;
 
   final List<MovieModel> _results;
   @override
@@ -228,7 +229,7 @@ class _$_Detected implements _Detected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Detected &&
+            other is _$DetectedImpl &&
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
@@ -239,8 +240,8 @@ class _$_Detected implements _Detected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DetectedCopyWith<_$_Detected> get copyWith =>
-      __$$_DetectedCopyWithImpl<_$_Detected>(this, _$identity);
+  _$$DetectedImplCopyWith<_$DetectedImpl> get copyWith =>
+      __$$DetectedImplCopyWithImpl<_$DetectedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -306,10 +307,10 @@ class _$_Detected implements _Detected {
 }
 
 abstract class _Detected implements NowPlayingState {
-  const factory _Detected(final List<MovieModel> results) = _$_Detected;
+  const factory _Detected(final List<MovieModel> results) = _$DetectedImpl;
 
   List<MovieModel> get results;
   @JsonKey(ignore: true)
-  _$$_DetectedCopyWith<_$_Detected> get copyWith =>
+  _$$DetectedImplCopyWith<_$DetectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

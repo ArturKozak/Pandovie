@@ -4,46 +4,41 @@ import 'package:pandovie/data/models/movie_model.dart';
 import 'package:pandovie/resource/theme.dart';
 
 class TicketInfoOverView extends StatelessWidget {
-  static const _opacityDuration = 350;
   static const _horizontalPadding = 24.0;
-  static final _textHeight = 60.h;
+  static final _textHeight = 65.h;
+  static final _overviewBottomPosition = 45.h;
 
   const TicketInfoOverView({
     super.key,
-    required this.overviewBottomPosition,
     required this.movie,
+    required this.isExpanded,
   });
 
-  final double overviewBottomPosition;
-
   final MovieModel movie;
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPositioned(
-      curve: Curves.elasticInOut,
-      duration: const Duration(
-        milliseconds: _opacityDuration,
-      ),
+    return Positioned(
       left: _horizontalPadding.w,
       right: _horizontalPadding.w,
-      bottom: overviewBottomPosition,
-      child: Center(
-        child: AnimatedContainer(
-          duration: const Duration(
-            milliseconds: _opacityDuration,
-          ),
-          height: _textHeight,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+      bottom: _overviewBottomPosition,
+      child: AnimatedOpacity(
+        duration: const Duration(milliseconds: 150),
+        opacity: isExpanded ? 0 : 1,
+        child: Center(
+          child: SizedBox(
+            height: _textHeight,
             child: Text(
               movie.overview,
+              overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.justify,
               style: AppTheme.textStyle.copyWith(
                 fontSize: 16.sp,
-                color: AppTheme.actionColor.withOpacity(.8),
+                color: AppTheme.primaryColor.withOpacity(.8),
                 fontWeight: FontWeight.w400,
               ),
+              maxLines: 3,
             ),
           ),
         ),

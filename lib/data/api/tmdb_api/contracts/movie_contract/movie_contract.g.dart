@@ -6,8 +6,8 @@ part of 'movie_contract.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MovieContract _$$_MovieContractFromJson(Map<String, dynamic> json) =>
-    _$_MovieContract(
+_$MovieContractImpl _$$MovieContractImplFromJson(Map<String, dynamic> json) =>
+    _$MovieContractImpl(
       id: json['id'] as int,
       title: json['title'] as String,
       popularity: (json['popularity'] as num).toDouble(),
@@ -22,7 +22,7 @@ _$_MovieContract _$$_MovieContractFromJson(Map<String, dynamic> json) =>
       adult: json['adult'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_MovieContractToJson(_$_MovieContract instance) =>
+Map<String, dynamic> _$$MovieContractImplToJson(_$MovieContractImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,

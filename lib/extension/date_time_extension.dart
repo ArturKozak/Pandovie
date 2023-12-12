@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-const String dateFormatter = 'dd/MMM/yyyy';
+const String dateFormatter = 'yyyy';
 const String dateQueryFormatter = 'yyyy-MM-dd';
 
 extension DateHelper on DateTime {

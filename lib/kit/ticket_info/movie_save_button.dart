@@ -8,6 +8,7 @@ import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
 
 class MovieSaveButton extends OpenCubitWidgetBase<SearchMovieCubit> {
+  static const _buttonSize = 44;
   final MovieModel movie;
   final VoidCallback onTap;
 
@@ -23,16 +24,16 @@ class MovieSaveButton extends OpenCubitWidgetBase<SearchMovieCubit> {
       children: [
         CustomImageView(
           svgPath: AppIcons.popcorn,
-          height: 44.h,
-          width: 44.w,
+          height: _buttonSize.h,
+          width: _buttonSize.w,
           onTap: onTap,
         ),
         Text(
           'Save',
           style: AppTheme.textStyle.copyWith(
-            fontSize: 14.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.w600,
-            color: AppTheme.actionColor,
+            color: AppTheme.primaryColor,
           ),
         ),
       ],
