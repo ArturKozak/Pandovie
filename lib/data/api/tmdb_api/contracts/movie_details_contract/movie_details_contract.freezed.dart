@@ -20,11 +20,25 @@ MovieDetailsContract _$MovieDetailsContractFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MovieDetailsContract {
-  int get budget => throw _privateConstructorUsedError;
-  List<GenresContract> get genres => throw _privateConstructorUsedError;
+  int? get budget => throw _privateConstructorUsedError;
+  List<GenresContract>? get genres => throw _privateConstructorUsedError;
   double? get revenue => throw _privateConstructorUsedError;
   double? get runtime => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'episode_run_time')
+  List<int>? get episodeRunTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'in_production')
+  bool? get inProduction => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_air_date')
+  DateTime? get lastAirDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_episode_to_air')
+  TVEpisodeContract? get nextEpisode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'number_of_episodes')
+  int? get numberOfEpisodes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'number_of_seasons')
+  int? get numberOfSeasons => throw _privateConstructorUsedError;
+  @JsonKey(name: 'seasons')
+  List<SeasonContract?>? get seasons => throw _privateConstructorUsedError;
   @JsonKey(name: 'production_companies')
   List<ProductionCompaniesContract>? get productionCompanies =>
       throw _privateConstructorUsedError;
@@ -42,13 +56,22 @@ abstract class $MovieDetailsContractCopyWith<$Res> {
       _$MovieDetailsContractCopyWithImpl<$Res, MovieDetailsContract>;
   @useResult
   $Res call(
-      {int budget,
-      List<GenresContract> genres,
+      {int? budget,
+      List<GenresContract>? genres,
       double? revenue,
       double? runtime,
       String? status,
+      @JsonKey(name: 'episode_run_time') List<int>? episodeRunTime,
+      @JsonKey(name: 'in_production') bool? inProduction,
+      @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
+      @JsonKey(name: 'next_episode_to_air') TVEpisodeContract? nextEpisode,
+      @JsonKey(name: 'number_of_episodes') int? numberOfEpisodes,
+      @JsonKey(name: 'number_of_seasons') int? numberOfSeasons,
+      @JsonKey(name: 'seasons') List<SeasonContract?>? seasons,
       @JsonKey(name: 'production_companies')
       List<ProductionCompaniesContract>? productionCompanies});
+
+  $TVEpisodeContractCopyWith<$Res>? get nextEpisode;
 }
 
 /// @nodoc
@@ -65,22 +88,29 @@ class _$MovieDetailsContractCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? budget = null,
-    Object? genres = null,
+    Object? budget = freezed,
+    Object? genres = freezed,
     Object? revenue = freezed,
     Object? runtime = freezed,
     Object? status = freezed,
+    Object? episodeRunTime = freezed,
+    Object? inProduction = freezed,
+    Object? lastAirDate = freezed,
+    Object? nextEpisode = freezed,
+    Object? numberOfEpisodes = freezed,
+    Object? numberOfSeasons = freezed,
+    Object? seasons = freezed,
     Object? productionCompanies = freezed,
   }) {
     return _then(_value.copyWith(
-      budget: null == budget
+      budget: freezed == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
-              as int,
-      genres: null == genres
+              as int?,
+      genres: freezed == genres
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<GenresContract>,
+              as List<GenresContract>?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -93,11 +123,51 @@ class _$MovieDetailsContractCopyWithImpl<$Res,
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      episodeRunTime: freezed == episodeRunTime
+          ? _value.episodeRunTime
+          : episodeRunTime // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      inProduction: freezed == inProduction
+          ? _value.inProduction
+          : inProduction // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastAirDate: freezed == lastAirDate
+          ? _value.lastAirDate
+          : lastAirDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextEpisode: freezed == nextEpisode
+          ? _value.nextEpisode
+          : nextEpisode // ignore: cast_nullable_to_non_nullable
+              as TVEpisodeContract?,
+      numberOfEpisodes: freezed == numberOfEpisodes
+          ? _value.numberOfEpisodes
+          : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberOfSeasons: freezed == numberOfSeasons
+          ? _value.numberOfSeasons
+          : numberOfSeasons // ignore: cast_nullable_to_non_nullable
+              as int?,
+      seasons: freezed == seasons
+          ? _value.seasons
+          : seasons // ignore: cast_nullable_to_non_nullable
+              as List<SeasonContract?>?,
       productionCompanies: freezed == productionCompanies
           ? _value.productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
               as List<ProductionCompaniesContract>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TVEpisodeContractCopyWith<$Res>? get nextEpisode {
+    if (_value.nextEpisode == null) {
+      return null;
+    }
+
+    return $TVEpisodeContractCopyWith<$Res>(_value.nextEpisode!, (value) {
+      return _then(_value.copyWith(nextEpisode: value) as $Val);
+    });
   }
 }
 
@@ -110,13 +180,23 @@ abstract class _$$MovieDetailsContractImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int budget,
-      List<GenresContract> genres,
+      {int? budget,
+      List<GenresContract>? genres,
       double? revenue,
       double? runtime,
       String? status,
+      @JsonKey(name: 'episode_run_time') List<int>? episodeRunTime,
+      @JsonKey(name: 'in_production') bool? inProduction,
+      @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
+      @JsonKey(name: 'next_episode_to_air') TVEpisodeContract? nextEpisode,
+      @JsonKey(name: 'number_of_episodes') int? numberOfEpisodes,
+      @JsonKey(name: 'number_of_seasons') int? numberOfSeasons,
+      @JsonKey(name: 'seasons') List<SeasonContract?>? seasons,
       @JsonKey(name: 'production_companies')
       List<ProductionCompaniesContract>? productionCompanies});
+
+  @override
+  $TVEpisodeContractCopyWith<$Res>? get nextEpisode;
 }
 
 /// @nodoc
@@ -130,22 +210,29 @@ class __$$MovieDetailsContractImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? budget = null,
-    Object? genres = null,
+    Object? budget = freezed,
+    Object? genres = freezed,
     Object? revenue = freezed,
     Object? runtime = freezed,
     Object? status = freezed,
+    Object? episodeRunTime = freezed,
+    Object? inProduction = freezed,
+    Object? lastAirDate = freezed,
+    Object? nextEpisode = freezed,
+    Object? numberOfEpisodes = freezed,
+    Object? numberOfSeasons = freezed,
+    Object? seasons = freezed,
     Object? productionCompanies = freezed,
   }) {
     return _then(_$MovieDetailsContractImpl(
-      budget: null == budget
+      budget: freezed == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
-              as int,
-      genres: null == genres
+              as int?,
+      genres: freezed == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<GenresContract>,
+              as List<GenresContract>?,
       revenue: freezed == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -158,6 +245,34 @@ class __$$MovieDetailsContractImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
+      episodeRunTime: freezed == episodeRunTime
+          ? _value._episodeRunTime
+          : episodeRunTime // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      inProduction: freezed == inProduction
+          ? _value.inProduction
+          : inProduction // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastAirDate: freezed == lastAirDate
+          ? _value.lastAirDate
+          : lastAirDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextEpisode: freezed == nextEpisode
+          ? _value.nextEpisode
+          : nextEpisode // ignore: cast_nullable_to_non_nullable
+              as TVEpisodeContract?,
+      numberOfEpisodes: freezed == numberOfEpisodes
+          ? _value.numberOfEpisodes
+          : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberOfSeasons: freezed == numberOfSeasons
+          ? _value.numberOfSeasons
+          : numberOfSeasons // ignore: cast_nullable_to_non_nullable
+              as int?,
+      seasons: freezed == seasons
+          ? _value._seasons
+          : seasons // ignore: cast_nullable_to_non_nullable
+              as List<SeasonContract?>?,
       productionCompanies: freezed == productionCompanies
           ? _value._productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
@@ -170,27 +285,38 @@ class __$$MovieDetailsContractImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MovieDetailsContractImpl implements _MovieDetailsContract {
   const _$MovieDetailsContractImpl(
-      {required this.budget,
-      required final List<GenresContract> genres,
+      {this.budget,
+      final List<GenresContract>? genres,
       this.revenue,
       this.runtime,
       this.status,
+      @JsonKey(name: 'episode_run_time') final List<int>? episodeRunTime,
+      @JsonKey(name: 'in_production') this.inProduction,
+      @JsonKey(name: 'last_air_date') this.lastAirDate,
+      @JsonKey(name: 'next_episode_to_air') this.nextEpisode,
+      @JsonKey(name: 'number_of_episodes') this.numberOfEpisodes,
+      @JsonKey(name: 'number_of_seasons') this.numberOfSeasons,
+      @JsonKey(name: 'seasons') final List<SeasonContract?>? seasons,
       @JsonKey(name: 'production_companies')
       final List<ProductionCompaniesContract>? productionCompanies})
       : _genres = genres,
+        _episodeRunTime = episodeRunTime,
+        _seasons = seasons,
         _productionCompanies = productionCompanies;
 
   factory _$MovieDetailsContractImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieDetailsContractImplFromJson(json);
 
   @override
-  final int budget;
-  final List<GenresContract> _genres;
+  final int? budget;
+  final List<GenresContract>? _genres;
   @override
-  List<GenresContract> get genres {
+  List<GenresContract>? get genres {
+    final value = _genres;
+    if (value == null) return null;
     if (_genres is EqualUnmodifiableListView) return _genres;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_genres);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -199,6 +325,43 @@ class _$MovieDetailsContractImpl implements _MovieDetailsContract {
   final double? runtime;
   @override
   final String? status;
+  final List<int>? _episodeRunTime;
+  @override
+  @JsonKey(name: 'episode_run_time')
+  List<int>? get episodeRunTime {
+    final value = _episodeRunTime;
+    if (value == null) return null;
+    if (_episodeRunTime is EqualUnmodifiableListView) return _episodeRunTime;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'in_production')
+  final bool? inProduction;
+  @override
+  @JsonKey(name: 'last_air_date')
+  final DateTime? lastAirDate;
+  @override
+  @JsonKey(name: 'next_episode_to_air')
+  final TVEpisodeContract? nextEpisode;
+  @override
+  @JsonKey(name: 'number_of_episodes')
+  final int? numberOfEpisodes;
+  @override
+  @JsonKey(name: 'number_of_seasons')
+  final int? numberOfSeasons;
+  final List<SeasonContract?>? _seasons;
+  @override
+  @JsonKey(name: 'seasons')
+  List<SeasonContract?>? get seasons {
+    final value = _seasons;
+    if (value == null) return null;
+    if (_seasons is EqualUnmodifiableListView) return _seasons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   final List<ProductionCompaniesContract>? _productionCompanies;
   @override
   @JsonKey(name: 'production_companies')
@@ -213,7 +376,7 @@ class _$MovieDetailsContractImpl implements _MovieDetailsContract {
 
   @override
   String toString() {
-    return 'MovieDetailsContract(budget: $budget, genres: $genres, revenue: $revenue, runtime: $runtime, status: $status, productionCompanies: $productionCompanies)';
+    return 'MovieDetailsContract(budget: $budget, genres: $genres, revenue: $revenue, runtime: $runtime, status: $status, episodeRunTime: $episodeRunTime, inProduction: $inProduction, lastAirDate: $lastAirDate, nextEpisode: $nextEpisode, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, seasons: $seasons, productionCompanies: $productionCompanies)';
   }
 
   @override
@@ -227,6 +390,19 @@ class _$MovieDetailsContractImpl implements _MovieDetailsContract {
             (identical(other.runtime, runtime) || other.runtime == runtime) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
+                .equals(other._episodeRunTime, _episodeRunTime) &&
+            (identical(other.inProduction, inProduction) ||
+                other.inProduction == inProduction) &&
+            (identical(other.lastAirDate, lastAirDate) ||
+                other.lastAirDate == lastAirDate) &&
+            (identical(other.nextEpisode, nextEpisode) ||
+                other.nextEpisode == nextEpisode) &&
+            (identical(other.numberOfEpisodes, numberOfEpisodes) ||
+                other.numberOfEpisodes == numberOfEpisodes) &&
+            (identical(other.numberOfSeasons, numberOfSeasons) ||
+                other.numberOfSeasons == numberOfSeasons) &&
+            const DeepCollectionEquality().equals(other._seasons, _seasons) &&
+            const DeepCollectionEquality()
                 .equals(other._productionCompanies, _productionCompanies));
   }
 
@@ -239,6 +415,13 @@ class _$MovieDetailsContractImpl implements _MovieDetailsContract {
       revenue,
       runtime,
       status,
+      const DeepCollectionEquality().hash(_episodeRunTime),
+      inProduction,
+      lastAirDate,
+      nextEpisode,
+      numberOfEpisodes,
+      numberOfSeasons,
+      const DeepCollectionEquality().hash(_seasons),
       const DeepCollectionEquality().hash(_productionCompanies));
 
   @JsonKey(ignore: true)
@@ -259,11 +442,19 @@ class _$MovieDetailsContractImpl implements _MovieDetailsContract {
 
 abstract class _MovieDetailsContract implements MovieDetailsContract {
   const factory _MovieDetailsContract(
-          {required final int budget,
-          required final List<GenresContract> genres,
+          {final int? budget,
+          final List<GenresContract>? genres,
           final double? revenue,
           final double? runtime,
           final String? status,
+          @JsonKey(name: 'episode_run_time') final List<int>? episodeRunTime,
+          @JsonKey(name: 'in_production') final bool? inProduction,
+          @JsonKey(name: 'last_air_date') final DateTime? lastAirDate,
+          @JsonKey(name: 'next_episode_to_air')
+          final TVEpisodeContract? nextEpisode,
+          @JsonKey(name: 'number_of_episodes') final int? numberOfEpisodes,
+          @JsonKey(name: 'number_of_seasons') final int? numberOfSeasons,
+          @JsonKey(name: 'seasons') final List<SeasonContract?>? seasons,
           @JsonKey(name: 'production_companies')
           final List<ProductionCompaniesContract>? productionCompanies}) =
       _$MovieDetailsContractImpl;
@@ -272,15 +463,36 @@ abstract class _MovieDetailsContract implements MovieDetailsContract {
       _$MovieDetailsContractImpl.fromJson;
 
   @override
-  int get budget;
+  int? get budget;
   @override
-  List<GenresContract> get genres;
+  List<GenresContract>? get genres;
   @override
   double? get revenue;
   @override
   double? get runtime;
   @override
   String? get status;
+  @override
+  @JsonKey(name: 'episode_run_time')
+  List<int>? get episodeRunTime;
+  @override
+  @JsonKey(name: 'in_production')
+  bool? get inProduction;
+  @override
+  @JsonKey(name: 'last_air_date')
+  DateTime? get lastAirDate;
+  @override
+  @JsonKey(name: 'next_episode_to_air')
+  TVEpisodeContract? get nextEpisode;
+  @override
+  @JsonKey(name: 'number_of_episodes')
+  int? get numberOfEpisodes;
+  @override
+  @JsonKey(name: 'number_of_seasons')
+  int? get numberOfSeasons;
+  @override
+  @JsonKey(name: 'seasons')
+  List<SeasonContract?>? get seasons;
   @override
   @JsonKey(name: 'production_companies')
   List<ProductionCompaniesContract>? get productionCompanies;

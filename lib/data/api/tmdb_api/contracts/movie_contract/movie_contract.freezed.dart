@@ -21,9 +21,12 @@ MovieContract _$MovieContractFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieContract {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_air_date')
+  String? get firstAirDate => throw _privateConstructorUsedError;
   @JsonKey(name: 'poster_path')
   String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: 'original_language')
@@ -54,9 +57,11 @@ abstract class $MovieContractCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
       double popularity,
       String overview,
+      String? title,
+      String? name,
+      @JsonKey(name: 'first_air_date') String? firstAirDate,
       @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'original_language') String? originalLanguage,
       @JsonKey(name: 'vote_count') int? voteCount,
@@ -81,9 +86,11 @@ class _$MovieContractCopyWithImpl<$Res, $Val extends MovieContract>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? popularity = null,
     Object? overview = null,
+    Object? title = freezed,
+    Object? name = freezed,
+    Object? firstAirDate = freezed,
     Object? posterPath = freezed,
     Object? originalLanguage = freezed,
     Object? voteCount = freezed,
@@ -98,10 +105,6 @@ class _$MovieContractCopyWithImpl<$Res, $Val extends MovieContract>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -110,6 +113,18 @@ class _$MovieContractCopyWithImpl<$Res, $Val extends MovieContract>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -156,9 +171,11 @@ abstract class _$$MovieContractImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String title,
       double popularity,
       String overview,
+      String? title,
+      String? name,
+      @JsonKey(name: 'first_air_date') String? firstAirDate,
       @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'original_language') String? originalLanguage,
       @JsonKey(name: 'vote_count') int? voteCount,
@@ -181,9 +198,11 @@ class __$$MovieContractImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? popularity = null,
     Object? overview = null,
+    Object? title = freezed,
+    Object? name = freezed,
+    Object? firstAirDate = freezed,
     Object? posterPath = freezed,
     Object? originalLanguage = freezed,
     Object? voteCount = freezed,
@@ -198,10 +217,6 @@ class __$$MovieContractImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -210,6 +225,18 @@ class __$$MovieContractImplCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
@@ -251,9 +278,11 @@ class __$$MovieContractImplCopyWithImpl<$Res>
 class _$MovieContractImpl implements _MovieContract {
   const _$MovieContractImpl(
       {required this.id,
-      required this.title,
       required this.popularity,
       required this.overview,
+      this.title,
+      this.name,
+      @JsonKey(name: 'first_air_date') this.firstAirDate,
       @JsonKey(name: 'poster_path') this.posterPath,
       @JsonKey(name: 'original_language') this.originalLanguage,
       @JsonKey(name: 'vote_count') this.voteCount,
@@ -269,11 +298,16 @@ class _$MovieContractImpl implements _MovieContract {
   @override
   final int id;
   @override
-  final String title;
-  @override
   final double popularity;
   @override
   final String overview;
+  @override
+  final String? title;
+  @override
+  final String? name;
+  @override
+  @JsonKey(name: 'first_air_date')
+  final String? firstAirDate;
   @override
   @JsonKey(name: 'poster_path')
   final String? posterPath;
@@ -301,7 +335,7 @@ class _$MovieContractImpl implements _MovieContract {
 
   @override
   String toString() {
-    return 'MovieContract(id: $id, title: $title, popularity: $popularity, overview: $overview, posterPath: $posterPath, originalLanguage: $originalLanguage, voteCount: $voteCount, releaseDate: $releaseDate, voteAverage: $voteAverage, originalTitle: $originalTitle, backdropPath: $backdropPath, adult: $adult)';
+    return 'MovieContract(id: $id, popularity: $popularity, overview: $overview, title: $title, name: $name, firstAirDate: $firstAirDate, posterPath: $posterPath, originalLanguage: $originalLanguage, voteCount: $voteCount, releaseDate: $releaseDate, voteAverage: $voteAverage, originalTitle: $originalTitle, backdropPath: $backdropPath, adult: $adult)';
   }
 
   @override
@@ -310,11 +344,14 @@ class _$MovieContractImpl implements _MovieContract {
         (other.runtimeType == runtimeType &&
             other is _$MovieContractImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.firstAirDate, firstAirDate) ||
+                other.firstAirDate == firstAirDate) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.originalLanguage, originalLanguage) ||
@@ -337,9 +374,11 @@ class _$MovieContractImpl implements _MovieContract {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      title,
       popularity,
       overview,
+      title,
+      name,
+      firstAirDate,
       posterPath,
       originalLanguage,
       voteCount,
@@ -366,9 +405,11 @@ class _$MovieContractImpl implements _MovieContract {
 abstract class _MovieContract implements MovieContract {
   const factory _MovieContract(
       {required final int id,
-      required final String title,
       required final double popularity,
       required final String overview,
+      final String? title,
+      final String? name,
+      @JsonKey(name: 'first_air_date') final String? firstAirDate,
       @JsonKey(name: 'poster_path') final String? posterPath,
       @JsonKey(name: 'original_language') final String? originalLanguage,
       @JsonKey(name: 'vote_count') final int? voteCount,
@@ -384,11 +425,16 @@ abstract class _MovieContract implements MovieContract {
   @override
   int get id;
   @override
-  String get title;
-  @override
   double get popularity;
   @override
   String get overview;
+  @override
+  String? get title;
+  @override
+  String? get name;
+  @override
+  @JsonKey(name: 'first_air_date')
+  String? get firstAirDate;
   @override
   @JsonKey(name: 'poster_path')
   String? get posterPath;

@@ -44,6 +44,7 @@ dependencies:
   uuid: ^4.1.0
   assorted_layout_widgets: ^8.0.5
   slide_to_act: ^2.0.2
+  overlay_widget: ^1.0.4
 
 dev_dependencies:
   build_runner: ^2.3.3

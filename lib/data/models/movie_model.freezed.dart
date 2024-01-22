@@ -21,15 +21,17 @@ MovieModel _$MovieModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MovieModel {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @Uint8ListConverter()
   Uint8List? get posterImage => throw _privateConstructorUsedError;
   String? get posterImageRaw => throw _privateConstructorUsedError;
   String? get originalLanguage => throw _privateConstructorUsedError;
   int? get voteCount => throw _privateConstructorUsedError;
   DateTime? get releaseDate => throw _privateConstructorUsedError;
+  DateTime? get firstAirDate => throw _privateConstructorUsedError;
   double? get voteAverage => throw _privateConstructorUsedError;
   String? get originalTitle => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
@@ -40,6 +42,14 @@ mixin _$MovieModel {
   String? get status => throw _privateConstructorUsedError;
   List<ProductionCompaniesModel>? get productionCompanies =>
       throw _privateConstructorUsedError;
+  bool get isTV => throw _privateConstructorUsedError;
+  List<int>? get episodeRunTime => throw _privateConstructorUsedError;
+  bool? get inProduction => throw _privateConstructorUsedError;
+  DateTime? get lastAirDate => throw _privateConstructorUsedError;
+  TVEpisodeModel? get nextEpisode => throw _privateConstructorUsedError;
+  int? get numberOfEpisodes => throw _privateConstructorUsedError;
+  int? get numberOfSeasons => throw _privateConstructorUsedError;
+  List<SeasonModel?>? get seasons => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,14 +65,16 @@ abstract class $MovieModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
       double popularity,
       String overview,
+      String? title,
+      String? name,
       @Uint8ListConverter() Uint8List? posterImage,
       String? posterImageRaw,
       String? originalLanguage,
       int? voteCount,
       DateTime? releaseDate,
+      DateTime? firstAirDate,
       double? voteAverage,
       String? originalTitle,
       bool adult,
@@ -71,7 +83,17 @@ abstract class $MovieModelCopyWith<$Res> {
       double? revenue,
       double? runtime,
       String? status,
-      List<ProductionCompaniesModel>? productionCompanies});
+      List<ProductionCompaniesModel>? productionCompanies,
+      bool isTV,
+      List<int>? episodeRunTime,
+      bool? inProduction,
+      DateTime? lastAirDate,
+      TVEpisodeModel? nextEpisode,
+      int? numberOfEpisodes,
+      int? numberOfSeasons,
+      List<SeasonModel?>? seasons});
+
+  $TVEpisodeModelCopyWith<$Res>? get nextEpisode;
 }
 
 /// @nodoc
@@ -88,14 +110,16 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? popularity = null,
     Object? overview = null,
+    Object? title = freezed,
+    Object? name = freezed,
     Object? posterImage = freezed,
     Object? posterImageRaw = freezed,
     Object? originalLanguage = freezed,
     Object? voteCount = freezed,
     Object? releaseDate = freezed,
+    Object? firstAirDate = freezed,
     Object? voteAverage = freezed,
     Object? originalTitle = freezed,
     Object? adult = null,
@@ -105,16 +129,20 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
     Object? runtime = freezed,
     Object? status = freezed,
     Object? productionCompanies = freezed,
+    Object? isTV = null,
+    Object? episodeRunTime = freezed,
+    Object? inProduction = freezed,
+    Object? lastAirDate = freezed,
+    Object? nextEpisode = freezed,
+    Object? numberOfEpisodes = freezed,
+    Object? numberOfSeasons = freezed,
+    Object? seasons = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -123,6 +151,14 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterImage: freezed == posterImage
           ? _value.posterImage
           : posterImage // ignore: cast_nullable_to_non_nullable
@@ -142,6 +178,10 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       voteAverage: freezed == voteAverage
           ? _value.voteAverage
@@ -179,7 +219,51 @@ class _$MovieModelCopyWithImpl<$Res, $Val extends MovieModel>
           ? _value.productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
               as List<ProductionCompaniesModel>?,
+      isTV: null == isTV
+          ? _value.isTV
+          : isTV // ignore: cast_nullable_to_non_nullable
+              as bool,
+      episodeRunTime: freezed == episodeRunTime
+          ? _value.episodeRunTime
+          : episodeRunTime // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      inProduction: freezed == inProduction
+          ? _value.inProduction
+          : inProduction // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastAirDate: freezed == lastAirDate
+          ? _value.lastAirDate
+          : lastAirDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextEpisode: freezed == nextEpisode
+          ? _value.nextEpisode
+          : nextEpisode // ignore: cast_nullable_to_non_nullable
+              as TVEpisodeModel?,
+      numberOfEpisodes: freezed == numberOfEpisodes
+          ? _value.numberOfEpisodes
+          : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberOfSeasons: freezed == numberOfSeasons
+          ? _value.numberOfSeasons
+          : numberOfSeasons // ignore: cast_nullable_to_non_nullable
+              as int?,
+      seasons: freezed == seasons
+          ? _value.seasons
+          : seasons // ignore: cast_nullable_to_non_nullable
+              as List<SeasonModel?>?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TVEpisodeModelCopyWith<$Res>? get nextEpisode {
+    if (_value.nextEpisode == null) {
+      return null;
+    }
+
+    return $TVEpisodeModelCopyWith<$Res>(_value.nextEpisode!, (value) {
+      return _then(_value.copyWith(nextEpisode: value) as $Val);
+    });
   }
 }
 
@@ -193,14 +277,16 @@ abstract class _$$MovieModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String title,
       double popularity,
       String overview,
+      String? title,
+      String? name,
       @Uint8ListConverter() Uint8List? posterImage,
       String? posterImageRaw,
       String? originalLanguage,
       int? voteCount,
       DateTime? releaseDate,
+      DateTime? firstAirDate,
       double? voteAverage,
       String? originalTitle,
       bool adult,
@@ -209,7 +295,18 @@ abstract class _$$MovieModelImplCopyWith<$Res>
       double? revenue,
       double? runtime,
       String? status,
-      List<ProductionCompaniesModel>? productionCompanies});
+      List<ProductionCompaniesModel>? productionCompanies,
+      bool isTV,
+      List<int>? episodeRunTime,
+      bool? inProduction,
+      DateTime? lastAirDate,
+      TVEpisodeModel? nextEpisode,
+      int? numberOfEpisodes,
+      int? numberOfSeasons,
+      List<SeasonModel?>? seasons});
+
+  @override
+  $TVEpisodeModelCopyWith<$Res>? get nextEpisode;
 }
 
 /// @nodoc
@@ -224,14 +321,16 @@ class __$$MovieModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
     Object? popularity = null,
     Object? overview = null,
+    Object? title = freezed,
+    Object? name = freezed,
     Object? posterImage = freezed,
     Object? posterImageRaw = freezed,
     Object? originalLanguage = freezed,
     Object? voteCount = freezed,
     Object? releaseDate = freezed,
+    Object? firstAirDate = freezed,
     Object? voteAverage = freezed,
     Object? originalTitle = freezed,
     Object? adult = null,
@@ -241,16 +340,20 @@ class __$$MovieModelImplCopyWithImpl<$Res>
     Object? runtime = freezed,
     Object? status = freezed,
     Object? productionCompanies = freezed,
+    Object? isTV = null,
+    Object? episodeRunTime = freezed,
+    Object? inProduction = freezed,
+    Object? lastAirDate = freezed,
+    Object? nextEpisode = freezed,
+    Object? numberOfEpisodes = freezed,
+    Object? numberOfSeasons = freezed,
+    Object? seasons = freezed,
   }) {
     return _then(_$MovieModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
       popularity: null == popularity
           ? _value.popularity
           : popularity // ignore: cast_nullable_to_non_nullable
@@ -259,6 +362,14 @@ class __$$MovieModelImplCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       posterImage: freezed == posterImage
           ? _value.posterImage
           : posterImage // ignore: cast_nullable_to_non_nullable
@@ -278,6 +389,10 @@ class __$$MovieModelImplCopyWithImpl<$Res>
       releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      firstAirDate: freezed == firstAirDate
+          ? _value.firstAirDate
+          : firstAirDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       voteAverage: freezed == voteAverage
           ? _value.voteAverage
@@ -315,6 +430,38 @@ class __$$MovieModelImplCopyWithImpl<$Res>
           ? _value._productionCompanies
           : productionCompanies // ignore: cast_nullable_to_non_nullable
               as List<ProductionCompaniesModel>?,
+      isTV: null == isTV
+          ? _value.isTV
+          : isTV // ignore: cast_nullable_to_non_nullable
+              as bool,
+      episodeRunTime: freezed == episodeRunTime
+          ? _value._episodeRunTime
+          : episodeRunTime // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+      inProduction: freezed == inProduction
+          ? _value.inProduction
+          : inProduction // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      lastAirDate: freezed == lastAirDate
+          ? _value.lastAirDate
+          : lastAirDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextEpisode: freezed == nextEpisode
+          ? _value.nextEpisode
+          : nextEpisode // ignore: cast_nullable_to_non_nullable
+              as TVEpisodeModel?,
+      numberOfEpisodes: freezed == numberOfEpisodes
+          ? _value.numberOfEpisodes
+          : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
+              as int?,
+      numberOfSeasons: freezed == numberOfSeasons
+          ? _value.numberOfSeasons
+          : numberOfSeasons // ignore: cast_nullable_to_non_nullable
+              as int?,
+      seasons: freezed == seasons
+          ? _value._seasons
+          : seasons // ignore: cast_nullable_to_non_nullable
+              as List<SeasonModel?>?,
     ));
   }
 }
@@ -324,14 +471,16 @@ class __$$MovieModelImplCopyWithImpl<$Res>
 class _$MovieModelImpl implements _MovieModel {
   const _$MovieModelImpl(
       {required this.id,
-      required this.title,
       required this.popularity,
       required this.overview,
+      this.title,
+      this.name,
       @Uint8ListConverter() this.posterImage,
       this.posterImageRaw,
       this.originalLanguage,
       this.voteCount,
       this.releaseDate,
+      this.firstAirDate,
       this.voteAverage,
       this.originalTitle,
       this.adult = false,
@@ -340,9 +489,19 @@ class _$MovieModelImpl implements _MovieModel {
       this.revenue,
       this.runtime,
       this.status,
-      final List<ProductionCompaniesModel>? productionCompanies})
+      final List<ProductionCompaniesModel>? productionCompanies,
+      this.isTV = false,
+      final List<int>? episodeRunTime,
+      this.inProduction,
+      this.lastAirDate,
+      this.nextEpisode,
+      this.numberOfEpisodes,
+      this.numberOfSeasons,
+      final List<SeasonModel?>? seasons})
       : _genres = genres,
-        _productionCompanies = productionCompanies;
+        _productionCompanies = productionCompanies,
+        _episodeRunTime = episodeRunTime,
+        _seasons = seasons;
 
   factory _$MovieModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$MovieModelImplFromJson(json);
@@ -350,11 +509,13 @@ class _$MovieModelImpl implements _MovieModel {
   @override
   final int id;
   @override
-  final String title;
-  @override
   final double popularity;
   @override
   final String overview;
+  @override
+  final String? title;
+  @override
+  final String? name;
   @override
   @Uint8ListConverter()
   final Uint8List? posterImage;
@@ -366,6 +527,8 @@ class _$MovieModelImpl implements _MovieModel {
   final int? voteCount;
   @override
   final DateTime? releaseDate;
+  @override
+  final DateTime? firstAirDate;
   @override
   final double? voteAverage;
   @override
@@ -403,8 +566,41 @@ class _$MovieModelImpl implements _MovieModel {
   }
 
   @override
+  @JsonKey()
+  final bool isTV;
+  final List<int>? _episodeRunTime;
+  @override
+  List<int>? get episodeRunTime {
+    final value = _episodeRunTime;
+    if (value == null) return null;
+    if (_episodeRunTime is EqualUnmodifiableListView) return _episodeRunTime;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final bool? inProduction;
+  @override
+  final DateTime? lastAirDate;
+  @override
+  final TVEpisodeModel? nextEpisode;
+  @override
+  final int? numberOfEpisodes;
+  @override
+  final int? numberOfSeasons;
+  final List<SeasonModel?>? _seasons;
+  @override
+  List<SeasonModel?>? get seasons {
+    final value = _seasons;
+    if (value == null) return null;
+    if (_seasons is EqualUnmodifiableListView) return _seasons;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
   String toString() {
-    return 'MovieModel(id: $id, title: $title, popularity: $popularity, overview: $overview, posterImage: $posterImage, posterImageRaw: $posterImageRaw, originalLanguage: $originalLanguage, voteCount: $voteCount, releaseDate: $releaseDate, voteAverage: $voteAverage, originalTitle: $originalTitle, adult: $adult, budget: $budget, genres: $genres, revenue: $revenue, runtime: $runtime, status: $status, productionCompanies: $productionCompanies)';
+    return 'MovieModel(id: $id, popularity: $popularity, overview: $overview, title: $title, name: $name, posterImage: $posterImage, posterImageRaw: $posterImageRaw, originalLanguage: $originalLanguage, voteCount: $voteCount, releaseDate: $releaseDate, firstAirDate: $firstAirDate, voteAverage: $voteAverage, originalTitle: $originalTitle, adult: $adult, budget: $budget, genres: $genres, revenue: $revenue, runtime: $runtime, status: $status, productionCompanies: $productionCompanies, isTV: $isTV, episodeRunTime: $episodeRunTime, inProduction: $inProduction, lastAirDate: $lastAirDate, nextEpisode: $nextEpisode, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, seasons: $seasons)';
   }
 
   @override
@@ -413,11 +609,12 @@ class _$MovieModelImpl implements _MovieModel {
         (other.runtimeType == runtimeType &&
             other is _$MovieModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.popularity, popularity) ||
                 other.popularity == popularity) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other.posterImage, posterImage) &&
             (identical(other.posterImageRaw, posterImageRaw) ||
@@ -428,6 +625,8 @@ class _$MovieModelImpl implements _MovieModel {
                 other.voteCount == voteCount) &&
             (identical(other.releaseDate, releaseDate) ||
                 other.releaseDate == releaseDate) &&
+            (identical(other.firstAirDate, firstAirDate) ||
+                other.firstAirDate == firstAirDate) &&
             (identical(other.voteAverage, voteAverage) ||
                 other.voteAverage == voteAverage) &&
             (identical(other.originalTitle, originalTitle) ||
@@ -439,31 +638,56 @@ class _$MovieModelImpl implements _MovieModel {
             (identical(other.runtime, runtime) || other.runtime == runtime) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
-                .equals(other._productionCompanies, _productionCompanies));
+                .equals(other._productionCompanies, _productionCompanies) &&
+            (identical(other.isTV, isTV) || other.isTV == isTV) &&
+            const DeepCollectionEquality()
+                .equals(other._episodeRunTime, _episodeRunTime) &&
+            (identical(other.inProduction, inProduction) ||
+                other.inProduction == inProduction) &&
+            (identical(other.lastAirDate, lastAirDate) ||
+                other.lastAirDate == lastAirDate) &&
+            (identical(other.nextEpisode, nextEpisode) ||
+                other.nextEpisode == nextEpisode) &&
+            (identical(other.numberOfEpisodes, numberOfEpisodes) ||
+                other.numberOfEpisodes == numberOfEpisodes) &&
+            (identical(other.numberOfSeasons, numberOfSeasons) ||
+                other.numberOfSeasons == numberOfSeasons) &&
+            const DeepCollectionEquality().equals(other._seasons, _seasons));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      title,
-      popularity,
-      overview,
-      const DeepCollectionEquality().hash(posterImage),
-      posterImageRaw,
-      originalLanguage,
-      voteCount,
-      releaseDate,
-      voteAverage,
-      originalTitle,
-      adult,
-      budget,
-      const DeepCollectionEquality().hash(_genres),
-      revenue,
-      runtime,
-      status,
-      const DeepCollectionEquality().hash(_productionCompanies));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        popularity,
+        overview,
+        title,
+        name,
+        const DeepCollectionEquality().hash(posterImage),
+        posterImageRaw,
+        originalLanguage,
+        voteCount,
+        releaseDate,
+        firstAirDate,
+        voteAverage,
+        originalTitle,
+        adult,
+        budget,
+        const DeepCollectionEquality().hash(_genres),
+        revenue,
+        runtime,
+        status,
+        const DeepCollectionEquality().hash(_productionCompanies),
+        isTV,
+        const DeepCollectionEquality().hash(_episodeRunTime),
+        inProduction,
+        lastAirDate,
+        nextEpisode,
+        numberOfEpisodes,
+        numberOfSeasons,
+        const DeepCollectionEquality().hash(_seasons)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -481,25 +705,34 @@ class _$MovieModelImpl implements _MovieModel {
 
 abstract class _MovieModel implements MovieModel {
   const factory _MovieModel(
-          {required final int id,
-          required final String title,
-          required final double popularity,
-          required final String overview,
-          @Uint8ListConverter() final Uint8List? posterImage,
-          final String? posterImageRaw,
-          final String? originalLanguage,
-          final int? voteCount,
-          final DateTime? releaseDate,
-          final double? voteAverage,
-          final String? originalTitle,
-          final bool adult,
-          final int? budget,
-          final List<GenresModel>? genres,
-          final double? revenue,
-          final double? runtime,
-          final String? status,
-          final List<ProductionCompaniesModel>? productionCompanies}) =
-      _$MovieModelImpl;
+      {required final int id,
+      required final double popularity,
+      required final String overview,
+      final String? title,
+      final String? name,
+      @Uint8ListConverter() final Uint8List? posterImage,
+      final String? posterImageRaw,
+      final String? originalLanguage,
+      final int? voteCount,
+      final DateTime? releaseDate,
+      final DateTime? firstAirDate,
+      final double? voteAverage,
+      final String? originalTitle,
+      final bool adult,
+      final int? budget,
+      final List<GenresModel>? genres,
+      final double? revenue,
+      final double? runtime,
+      final String? status,
+      final List<ProductionCompaniesModel>? productionCompanies,
+      final bool isTV,
+      final List<int>? episodeRunTime,
+      final bool? inProduction,
+      final DateTime? lastAirDate,
+      final TVEpisodeModel? nextEpisode,
+      final int? numberOfEpisodes,
+      final int? numberOfSeasons,
+      final List<SeasonModel?>? seasons}) = _$MovieModelImpl;
 
   factory _MovieModel.fromJson(Map<String, dynamic> json) =
       _$MovieModelImpl.fromJson;
@@ -507,11 +740,13 @@ abstract class _MovieModel implements MovieModel {
   @override
   int get id;
   @override
-  String get title;
-  @override
   double get popularity;
   @override
   String get overview;
+  @override
+  String? get title;
+  @override
+  String? get name;
   @override
   @Uint8ListConverter()
   Uint8List? get posterImage;
@@ -523,6 +758,8 @@ abstract class _MovieModel implements MovieModel {
   int? get voteCount;
   @override
   DateTime? get releaseDate;
+  @override
+  DateTime? get firstAirDate;
   @override
   double? get voteAverage;
   @override
@@ -541,6 +778,22 @@ abstract class _MovieModel implements MovieModel {
   String? get status;
   @override
   List<ProductionCompaniesModel>? get productionCompanies;
+  @override
+  bool get isTV;
+  @override
+  List<int>? get episodeRunTime;
+  @override
+  bool? get inProduction;
+  @override
+  DateTime? get lastAirDate;
+  @override
+  TVEpisodeModel? get nextEpisode;
+  @override
+  int? get numberOfEpisodes;
+  @override
+  int? get numberOfSeasons;
+  @override
+  List<SeasonModel?>? get seasons;
   @override
   @JsonKey(ignore: true)
   _$$MovieModelImplCopyWith<_$MovieModelImpl> get copyWith =>

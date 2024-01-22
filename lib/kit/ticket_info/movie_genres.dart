@@ -31,13 +31,6 @@ class MovieGenres extends StatelessWidget {
         itemBuilder: (context, index) => FittedBox(
           child: Column(
             children: [
-              // Text(
-              //     movie.genres![index].name.getEmodji(),
-              //     style: AppTheme.textStyle.copyWith(
-              //       fontSize: 44.sp,
-
-              //     ),
-              //   ),
               Image(
                 image: AssetImage(
                   movie.genres![index].name.getGifEmodji(),

@@ -36,7 +36,10 @@ class DetailsBackgroundImage extends StatelessWidget {
             child: CustomImageView(
               svgPath: AppIcons.chevronRight,
               height: _iconHeight.h,
-              onTap: () => context.router.pop(),
+              onTap: () {
+                Navigator.of(context).pop();
+                context.router.pop();
+              },
             ),
           ),
         ),

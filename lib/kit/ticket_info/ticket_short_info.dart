@@ -44,13 +44,22 @@ class TicketShortInfo extends StatelessWidget {
               value: widget.movie.voteAverage!.toStringAsFixed(1),
             ),
             10.verticalSpace,
-            AboutInfoElement(
+        if(widget.movie.runtime != null)    AboutInfoElement(
               movie: widget.movie,
               isDetails: false,
               isDate: true,
               icons: AppIcons.release,
               name: 'Runtime',
               value: '${widget.movie.runtime!.toStringAsFixed(0)} min.',
+              isFitted: true,
+            ),
+                if(widget.movie.episodeRunTime != null &&widget.movie.episodeRunTime!.isNotEmpty)    AboutInfoElement(
+              movie: widget.movie,
+              isDetails: false,
+              isDate: true,
+              icons: AppIcons.release,
+              name: 'Runtime',
+              value: '${widget.movie.episodeRunTime!.first.toStringAsFixed(0)} min.',
               isFitted: true,
             ),
             20.verticalSpace,

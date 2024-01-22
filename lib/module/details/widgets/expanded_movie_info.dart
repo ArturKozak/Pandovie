@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:pandovie/data/models/movie_model.dart';
-import 'package:pandovie/data/repositories/collection_repositories.dart';
 import 'package:pandovie/kit/ticket_info/movie_genres.dart';
-import 'package:pandovie/kit/ticket_info/movie_save_button.dart';
 import 'package:pandovie/kit/ticket_info/ticket_info_title.dart';
 import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
@@ -14,7 +11,7 @@ class ExpandedMovieInfo extends OpenCubitWidgetBase {
   static const _itemPadding = 16.0;
 
   static final _overviewPadding = const EdgeInsets.only(
-    bottom: 30,
+    bottom: 120,
     top: 15,
   ).r;
 
@@ -62,11 +59,6 @@ class ExpandedMovieInfo extends OpenCubitWidgetBase {
               ),
             ),
             20.verticalSpace,
-            MovieSaveButton(
-              movie: movie,
-              onTap: () => GetIt.I<CollectionRepository>().add(movie),
-            ),
-            15.verticalSpace,
             if (movie.genres != null)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: _itemPadding).r,
@@ -92,7 +84,7 @@ class ExpandedMovieInfo extends OpenCubitWidgetBase {
                 ).r,
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: _itemPadding).r,
+                padding: const EdgeInsets.only(left: _itemPadding, right: _itemPadding, bottom: _itemPadding*5).r,
                 child: Text(
                   movie.overview,
                   textAlign: TextAlign.justify,

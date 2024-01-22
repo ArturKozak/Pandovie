@@ -9,9 +9,11 @@ part 'movie_contract.g.dart';
 class MovieContract with _$MovieContract {
   const factory MovieContract({
     required int id,
-    required String title,
     required double popularity,
     required String overview,
+    String? title,
+    String? name,
+    @JsonKey(name: 'first_air_date') String? firstAirDate,
     @JsonKey(name: 'poster_path') String? posterPath,
     @JsonKey(name: 'original_language') String? originalLanguage,
     @JsonKey(name: 'vote_count') int? voteCount,

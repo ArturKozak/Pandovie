@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:pandovie/data/api/tmdb_api/contracts/collection_contract/collection_contract.dart';
+import 'package:pandovie/data/api/tmdb_api/contracts/movie_details_contract/movie_details_contract.dart';
 import 'package:pandovie/data/api/tmdb_api/tmdb_api_resource.dart';
 import 'package:pandovie/data/models/movie_model.dart';
 import 'package:pandovie/data/models/production_companies/production_companies_model.dart';
@@ -18,6 +20,42 @@ class TMDBApi {
       dio,
       baseUrl: baseUrl,
     );
+  }
+
+  Future<List<MovieModel>> _combinateMovieParams(
+      {required MoviesCollectionContract response,
+      bool isTV = false,
+      String? language}) async {
+    final moviesList = <MovieModel>[];
+
+    for (final movieContract in response.results) {
+      final model = MovieModel.fromContract(movieContract, isTV);
+
+      if (model.posterImageRaw == null) {
+        continue;
+      }
+
+      moviesList.add(model);
+    }
+
+    final movies = await Future.wait(
+      moviesList.map((movie) async {
+        if (movie.budget == null &&
+            movie.genres == null &&
+            movie.revenue == null &&
+            movie.runtime == null &&
+            movie.status == null &&
+            movie.productionCompanies == null) {
+          return getMovieDetails(
+            model: movie,
+            language: language,
+          );
+        }
+
+        return movie;
+      }).toList(),
+    );
+    return movies;
   }
 
   Future<MovieModel> getMovieImages({
@@ -52,10 +90,19 @@ class TMDBApi {
     required MovieModel model,
     String? language,
   }) async {
-    final response = await _tmdbResource.getMovieDetails(
-      id: model.id,
-      language: language,
-    );
+    late MovieDetailsContract response;
+
+    if (!model.isTV) {
+      response = await _tmdbResource.getMovieDetails(
+        id: model.id,
+        language: language,
+      );
+    } else {
+      response = await _tmdbResource.getTVDetails(
+        id: model.id,
+        language: language,
+      );
+    }
 
     final fullModel = MovieModel.fromDetailsContract(
       response,
@@ -72,41 +119,37 @@ class TMDBApi {
   }) async {
     final moviesList = <MovieModel>[];
 
-    final response = await _tmdbResource.getNowPlaying(
+    final response = await _tmdbResource.getNowMoviesPlaying(
       includeAdult: includeAdult,
       language: language,
       page: page,
     );
 
-    for (final movieContract in response.results) {
-      final model = MovieModel.fromContract(movieContract);
-
-      if (model.posterImageRaw == null) {
-        continue;
-      }
-
-      moviesList.add(model);
-    }
-
-    final movies = await Future.wait(
-      moviesList.map((movie) async {
-        if (movie.budget == null &&
-            movie.genres == null &&
-            movie.revenue == null &&
-            movie.runtime == null &&
-            movie.status == null &&
-            movie.productionCompanies == null) {
-          return getMovieDetails(
-            model: movie,
-            language: language,
-          );
-        }
-
-        return movie;
-      }).toList(),
+    List<MovieModel> movies = await _combinateMovieParams(
+      response: response,
+      language: language,
+      isTV: false,
     );
 
-    return movies;
+    moviesList.addAll(movies);
+
+    final responseTV = await _tmdbResource.getNowTVPlaying(
+      includeAdult: includeAdult,
+      language: language,
+      page: page,
+    );
+
+    List<MovieModel> tvs = await _combinateMovieParams(
+      response: responseTV,
+      language: language,
+      isTV: true,
+    );
+
+    moviesList.addAll(tvs);
+
+    moviesList.shuffle();
+
+    return moviesList;
   }
 
   Future<List<MovieModel>> getUpcoming({
@@ -116,7 +159,7 @@ class TMDBApi {
   }) async {
     final moviesList = <MovieModel>[];
 
-    final response = await _tmdbResource.getUpcoming(
+    final response = await _tmdbResource.getMoviesUpcoming(
       includeAdult: includeAdult,
       language: language,
       page: page,
@@ -132,35 +175,31 @@ class TMDBApi {
           .formatDateForQuery(),
     );
 
-    for (final movieContract in response.results) {
-      final model = MovieModel.fromContract(movieContract);
-
-      if (model.posterImageRaw == null) {
-        continue;
-      }
-
-      moviesList.add(model);
-    }
-
-    final movies = await Future.wait(
-      moviesList.map((movie) async {
-        if (movie.budget == null &&
-            movie.genres == null &&
-            movie.revenue == null &&
-            movie.runtime == null &&
-            movie.status == null &&
-            movie.productionCompanies == null) {
-          return getMovieDetails(
-            model: movie,
-            language: language,
-          );
-        }
-
-        return movie;
-      }).toList(),
+    List<MovieModel> movies = await _combinateMovieParams(
+      response: response,
+      language: language,
+      isTV: false,
     );
 
-    return movies;
+    moviesList.addAll(movies);
+
+    final responseTV = await _tmdbResource.getTVUpcoming(
+      includeAdult: includeAdult,
+      language: language,
+      page: page,
+    );
+
+    List<MovieModel> tvs = await _combinateMovieParams(
+      response: responseTV,
+      language: language,
+      isTV: true,
+    );
+
+    moviesList.addAll(tvs);
+
+    moviesList.shuffle();
+
+    return moviesList;
   }
 
   Future<List<MovieModel>> getMoviesByQuery({
@@ -178,34 +217,31 @@ class TMDBApi {
       page: page,
     );
 
-    for (final movieContract in response.results) {
-      final model = MovieModel.fromContract(movieContract);
-
-      if (model.posterImageRaw == null) {
-        continue;
-      }
-
-      moviesList.add(model);
-    }
-
-    final movies = await Future.wait(
-      moviesList.map((movie) async {
-        if (movie.budget == null &&
-            movie.genres == null &&
-            movie.revenue == null &&
-            movie.runtime == null &&
-            movie.status == null &&
-            movie.productionCompanies == null) {
-          return getMovieDetails(
-            model: movie,
-            language: language,
-          );
-        }
-
-        return movie;
-      }).toList(),
+    List<MovieModel> movies = await _combinateMovieParams(
+      response: response,
+      language: language,
+      isTV: false,
     );
 
-    return movies;
+    moviesList.addAll(movies);
+
+    final responseTV = await _tmdbResource.getTVByQuery(
+      query: query,
+      includeAdult: includeAdult,
+      language: language,
+      page: page,
+    );
+
+    List<MovieModel> tvs = await _combinateMovieParams(
+      response: responseTV,
+      language: language,
+      isTV: true,
+    );
+
+    moviesList.addAll(tvs);
+
+    moviesList.shuffle();
+
+    return moviesList;
   }
 }

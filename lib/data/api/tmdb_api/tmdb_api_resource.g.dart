@@ -62,7 +62,50 @@ class _TMDBApiResource implements TMDBApiResource {
   }
 
   @override
-  Future<MoviesCollectionContract> getNowPlaying({
+  Future<MoviesCollectionContract> getTVByQuery({
+    required String query,
+    bool? includeAdult = false,
+    String? language = 'en-US',
+    int? page = 2,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'query': query,
+      r'include_adult': includeAdult,
+      r'language': language,
+      r'page': page,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MoviesCollectionContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/search/tv',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesCollectionContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MoviesCollectionContract> getNowMoviesPlaying({
     bool? includeAdult = false,
     String? language = 'en-US',
     int? page = 1,
@@ -103,7 +146,48 @@ class _TMDBApiResource implements TMDBApiResource {
   }
 
   @override
-  Future<MoviesCollectionContract> getUpcoming({
+  Future<MoviesCollectionContract> getNowTVPlaying({
+    bool? includeAdult = false,
+    String? language = 'en-US',
+    int? page = 1,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'include_adult': includeAdult,
+      r'language': language,
+      r'page': page,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MoviesCollectionContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/trending/tv/day',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesCollectionContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MoviesCollectionContract> getMoviesUpcoming({
     bool? includeAdult = false,
     String? language = 'en-US',
     int? page = 1,
@@ -148,6 +232,49 @@ class _TMDBApiResource implements TMDBApiResource {
   }
 
   @override
+  Future<MoviesCollectionContract> getTVUpcoming({
+    bool? includeAdult = false,
+    String? language = 'en-US',
+    int? page = 1,
+    String? timezone,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'include_adult': includeAdult,
+      r'language': language,
+      r'page': page,
+      r'tv/on_the_air': timezone,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MoviesCollectionContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'tv/on_the_air',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MoviesCollectionContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<MovieDetailsContract> getMovieDetails({
     required int id,
     String? language = 'en-US',
@@ -171,6 +298,42 @@ class _TMDBApiResource implements TMDBApiResource {
             .compose(
               _dio.options,
               '/movie/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = MovieDetailsContract.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<MovieDetailsContract> getTVDetails({
+    required int id,
+    String? language = 'en-US',
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'language': language};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'Accept': 'application/json',
+      r'Authorization':
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmU4ZjZjYjQ0M2ViNDUzNmZjNDU0MzEwY2MxYTUzNyIsInN1YiI6IjY0ZWNkMTEwYzNjODkxMDEzYWIzNzc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HxX-3wkwCdOI0d-Z2ZIVLvhnv61iGqT0pvpzng9zQQo',
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<MovieDetailsContract>(dio.Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/tv/${id}',
               queryParameters: queryParameters,
               data: _data,
             )

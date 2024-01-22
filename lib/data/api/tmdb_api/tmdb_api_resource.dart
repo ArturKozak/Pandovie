@@ -27,12 +27,35 @@ abstract class TMDBApiResource {
     @Query('page') int? page = 2,
   });
 
+  @GET('/search/tv')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MoviesCollectionContract> getTVByQuery({
+    @Query('query') required String query,
+    @Query('include_adult') bool? includeAdult = false,
+    @Query('language') String? language = 'en-US',
+    @Query('page') int? page = 2,
+  });
+
   @GET('/trending/movie/day')
   @Headers(<String, dynamic>{
     "Accept": "application/json",
     "Authorization": PandovieConfiguration.accessTmdbKey,
   })
-  Future<MoviesCollectionContract> getNowPlaying({
+  Future<MoviesCollectionContract> getNowMoviesPlaying({
+    @Query('include_adult') bool? includeAdult = false,
+    @Query('language') String? language = 'en-US',
+    @Query('page') int? page = 1,
+  });
+
+  @GET('/trending/tv/day')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MoviesCollectionContract> getNowTVPlaying({
     @Query('include_adult') bool? includeAdult = false,
     @Query('language') String? language = 'en-US',
     @Query('page') int? page = 1,
@@ -43,12 +66,25 @@ abstract class TMDBApiResource {
     "Accept": "application/json",
     "Authorization": PandovieConfiguration.accessTmdbKey,
   })
-  Future<MoviesCollectionContract> getUpcoming({
+  Future<MoviesCollectionContract> getMoviesUpcoming({
     @Query('include_adult') bool? includeAdult = false,
     @Query('language') String? language = 'en-US',
     @Query('page') int? page = 1,
     @Query('release_date.gte') String? minDate,
     @Query('release_date.lte') String? maxDate,
+  });
+
+  @GET('tv/on_the_air')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MoviesCollectionContract> getTVUpcoming({
+    @Query('include_adult') bool? includeAdult = false,
+    @Query('language') String? language = 'en-US',
+    @Query('page') int? page = 1,
+    @Query('tv/on_the_air') String? timezone,
+
   });
 
   @GET('/movie/{movie_id}')
@@ -58,6 +94,16 @@ abstract class TMDBApiResource {
   })
   Future<MovieDetailsContract> getMovieDetails({
     @Path('movie_id') required int id,
+    @Query('language') String? language = 'en-US',
+  });
+
+  @GET('/tv/{series_id}')
+  @Headers(<String, dynamic>{
+    "Accept": "application/json",
+    "Authorization": PandovieConfiguration.accessTmdbKey,
+  })
+  Future<MovieDetailsContract> getTVDetails({
+    @Path('series_id') required int id,
     @Query('language') String? language = 'en-US',
   });
 }

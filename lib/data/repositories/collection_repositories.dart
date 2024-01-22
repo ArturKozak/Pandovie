@@ -83,8 +83,16 @@ class CollectionRepository {
       model.id.toString(),
     );
 
-    _movies.remove(model);
+    _movies.removeWhere((element) => element.id == model.id);
 
     _onAllMoviesStreamController.add(_movies);
+  }
+
+  bool checkIfContains(MovieModel model) {
+    if (_movies.any((element) => element.id == model.id)) {
+      return true;
+    }
+
+    return false;
   }
 }

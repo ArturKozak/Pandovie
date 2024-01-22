@@ -26,7 +26,7 @@ class BackgroundSwitcher extends StatelessWidget {
       },
       duration: const Duration(milliseconds: 500),
       child: Container(
-        key: ValueKey<String>(movie.title),
+        key: ValueKey<String>(movie.title ?? movie.name ?? ''),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: CachedNetworkImageProvider(

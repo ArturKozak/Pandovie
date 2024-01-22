@@ -18,7 +18,7 @@ class TicketInfoTitle extends StatelessWidget {
     return FittedBox(
       alignment: isDetails ? Alignment.centerLeft : Alignment.center,
       child: Text(
-        movie.title,
+        movie.title ?? movie.name ?? '',
         style: AppTheme.textStyle.copyWith(
           fontSize: 22.sp,
           color: AppTheme.primaryColor,

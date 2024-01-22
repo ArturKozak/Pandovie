@@ -54,8 +54,8 @@ class DetailsHorizontalInfo extends StatelessWidget {
                 ),
               ),
             ),
-            _buildWhiteLine(),
-            Expanded(
+         if(movie.budget != null)   _buildWhiteLine(),
+          if(movie.budget != null)    Expanded(
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8).r,
@@ -69,7 +69,7 @@ class DetailsHorizontalInfo extends StatelessWidget {
               ),
             ),
             _buildWhiteLine(),
-            Expanded(
+       if(movie.runtime != null)      Expanded(
               flex: 2,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8).r,
@@ -79,6 +79,19 @@ class DetailsHorizontalInfo extends StatelessWidget {
                   icons: AppIcons.release,
                   name: 'Runtime',
                   value: '${movie.runtime!.toStringAsFixed(0)} min.',
+                ),
+              ),
+            ),
+               if(movie.episodeRunTime != null && movie.episodeRunTime!.isNotEmpty)      Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8).r,
+                child: AboutInfoElement(
+                  movie: movie,
+                  isDetails: true,
+                  icons: AppIcons.release,
+                  name: 'Runtime',
+                  value: '${movie.episodeRunTime!.first.toStringAsFixed(0)} min.',
                 ),
               ),
             ),
