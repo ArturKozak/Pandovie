@@ -28,6 +28,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+      final size = MediaQuery.of(context).size;
+
     return BlocBuilder<SearchMovieCubit, SearchMovieState>(
       builder: (context, state) {
         return state.maybeWhen(
@@ -47,7 +49,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             leading: CustomIconButton(
-              height: _iconSize.h,
+              height: size.height < 700 ? _iconSize.h*1.3:_iconSize.h,
               width: _iconSize.w,
               margin: const EdgeInsets.only(
                 right: _margin,

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pandovie/kit/custom_image_view.dart';
 import 'package:pandovie/module/collection/cubit/collection_manager_cubit.dart';
-import 'package:pandovie/module/collection/widgets/3d_list.dart';
+import 'package:pandovie/module/collection/widgets/threed_list.dart';
 import 'package:pandovie/resource/app_icons.dart';
 import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_page_base.dart';

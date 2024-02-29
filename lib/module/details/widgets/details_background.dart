@@ -25,6 +25,7 @@ class DetailsBackgroundImage extends StatelessWidget {
       children: [
         CachedNetworkImage(
           height: 0.8.sh,
+          width: double.maxFinite,
           imageUrl: '${PandovieConfiguration.imageUrl}${movie.posterImageRaw!}',
           fit: BoxFit.cover,
         ),

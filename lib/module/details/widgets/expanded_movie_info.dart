@@ -7,7 +7,7 @@ import 'package:pandovie/resource/theme.dart';
 import 'package:pandovie/utils/open_cubit/open_cubit_widget_base.dart';
 
 class ExpandedMovieInfo extends OpenCubitWidgetBase {
-  static const _borderRadius = 25.0;
+  static const _borderRadius = 16.0;
   static const _itemPadding = 16.0;
 
   static final _overviewPadding = const EdgeInsets.only(
@@ -28,7 +28,10 @@ class ExpandedMovieInfo extends OpenCubitWidgetBase {
       width: double.maxFinite,
       decoration: BoxDecoration(
         color: AppTheme.actionColor,
-        borderRadius: BorderRadius.circular(_borderRadius).r,
+           borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(_borderRadius),
+                  topLeft: Radius.circular(_borderRadius),
+                ).r,
         boxShadow: [
           BoxShadow(
             blurRadius: 10,
@@ -79,12 +82,16 @@ class ExpandedMovieInfo extends OpenCubitWidgetBase {
               decoration: BoxDecoration(
                 color: AppTheme.primaryColor,
                 borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(_itemPadding),
-                  topLeft: Radius.circular(_itemPadding),
+                  topRight: Radius.circular(_borderRadius),
+                  topLeft: Radius.circular(_borderRadius),
                 ).r,
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: _itemPadding, right: _itemPadding, bottom: _itemPadding*5).r,
+                padding: const EdgeInsets.only(
+                        left: _itemPadding,
+                        right: _itemPadding,
+                        bottom: _itemPadding * 5)
+                    .r,
                 child: Text(
                   movie.overview,
                   textAlign: TextAlign.justify,

@@ -35,7 +35,9 @@ class _ImageListState extends State<ImageList> {
   static const _borderRadius = 20.0;
 
   static final _height = 310.h;
+    static final _smallDisplayHeight = 280.h;
   static final _width = 160.w;
+    static final _smallDisplayWidth = 140.h;
 
   static final _listPaddings = const EdgeInsets.only(
     left: 25,
@@ -93,6 +95,8 @@ class _ImageListState extends State<ImageList> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Transform.rotate(
       angle: pi * 1.95,
       child: Container(
@@ -103,7 +107,7 @@ class _ImageListState extends State<ImageList> {
             topRight: Radius.circular(30),
           ).r,
         ),
-        height: _height,
+        height:size.height < 700 ? _smallDisplayHeight: _height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -156,7 +160,7 @@ class _ImageListState extends State<ImageList> {
                       widget.onTap.call(widget.results[index]);
                     },
                     child: Container(
-                      width: _width,
+                      width: size.height < 700 ? _smallDisplayWidth: _width,
                       margin: const EdgeInsets.all(4).r,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(_borderRadius).r,

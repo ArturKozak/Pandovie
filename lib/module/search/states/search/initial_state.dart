@@ -11,10 +11,14 @@ import 'package:pandovie/resource/theme.dart';
 
 class SearchInitialState extends StatelessWidget {
   static const _horizontalSpace = -25;
+    static const _upcomingListBottomSpace = 290;
+        static const _upcomingListSmallDisplayBottomSpace = 260;
   const SearchInitialState({super.key});
 
   @override
   Widget build(BuildContext context) {
+        final size = MediaQuery.of(context).size;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppTheme.actionColor,
@@ -24,68 +28,72 @@ class SearchInitialState extends StatelessWidget {
         decoration: const BoxDecoration(
           color: AppTheme.actionColor,
         ),
-        child: Stack(
+        child: Column(
           children: [
             CustomSearchField(
               onFieldSubmitted:
                   context.read<SearchMovieCubit>().searchMoviesByQuery,
             ),
-            Positioned(
-              bottom: 290.h,
-              left: _horizontalSpace.w,
-              right: _horizontalSpace.w,
-              child: BlocBuilder<UpcomingMoviesCubit, UpcomingMoviesState>(
-                builder: (context, state) {
-                  return state.when(
-                    initial: () {
-                      return const SizedBox();
-                    },
-                    detected: (results) {
-                      return SingleChildScrollView(
-                        child: ImageList(
-                          results: results,
-                          duration: 170,
-                          onTap: (movie) =>
-                              AppRouter.navigateToDetailsPage(movie),
-                          bgColor: AppTheme.primaryColor,
-                          nameColor: AppTheme.actionColor,
-                          name: 'Upcoming movies',
-                        ),
-                      );
-                    },
-                  );
-                },
+          Expanded(
+            child:
+             Stack(
+            children: [   Positioned(
+                bottom: size.height < 700 ?_upcomingListSmallDisplayBottomSpace.h: _upcomingListBottomSpace.h,
+                left: _horizontalSpace.w,
+                right: _horizontalSpace.w,
+                child: BlocBuilder<UpcomingMoviesCubit, UpcomingMoviesState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () {
+                        return const SizedBox();
+                      },
+                      detected: (results) {
+                        return SingleChildScrollView(
+                          child: ImageList(
+                            results: results,
+                            duration: 170,
+                            onTap: (movie) =>
+                                AppRouter.navigateToDetailsPage(movie),
+                            bgColor: AppTheme.primaryColor,
+                            nameColor: AppTheme.actionColor,
+                            name: 'Upcoming movies',
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: _horizontalSpace.w,
-              right: _horizontalSpace.w,
-              child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
-                builder: (context, state) {
-                  return state.when(
-                    initial: () {
-                      return const SizedBox();
-                    },
-                    detected: (results) {
-                      return SingleChildScrollView(
-                        child: ImageList(
-                          bgColor: AppTheme.actionColor,
-                          nameColor: AppTheme.primaryColor,
-                          results: results,
-                          onTap: (movie) =>
-                              AppRouter.navigateToDetailsPage(movie),
-                          duration: 170,
-                          name: 'Popular in this week',
-                        ),
-                      );
-                    },
-                  );
-                },
+              Positioned(
+                bottom: 0,
+                left: _horizontalSpace.w,
+                right: _horizontalSpace.w,
+                child: BlocBuilder<NowPlayingCubit, NowPlayingState>(
+                  builder: (context, state) {
+                    return state.when(
+                      initial: () {
+                        return const SizedBox();
+                      },
+                      detected: (results) {
+                        return SingleChildScrollView(
+                          child: ImageList(
+                            bgColor: AppTheme.actionColor,
+                            nameColor: AppTheme.primaryColor,
+                            results: results,
+                            onTap: (movie) =>
+                                AppRouter.navigateToDetailsPage(movie),
+                            duration: 170,
+                            name: 'Popular in this week',
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ],
+                    ),
+          ),],),
       ),
     );
   }

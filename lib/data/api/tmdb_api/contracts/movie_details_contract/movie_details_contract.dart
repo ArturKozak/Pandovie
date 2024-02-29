@@ -12,8 +12,8 @@ part 'movie_details_contract.g.dart';
 @freezed
 class MovieDetailsContract with _$MovieDetailsContract {
   const factory MovieDetailsContract({
-     int? budget,
-     List<GenresContract>? genres,
+    int? budget,
+    List<GenresContract>? genres,
     double? revenue,
     double? runtime,
     String? status,

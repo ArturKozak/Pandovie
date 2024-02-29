@@ -16,6 +16,7 @@ import 'package:pandovie/utils/open_cubit/open_cubit_page_base.dart';
 class HomePage extends OpenCubitPageBase<SearchMovieCubit> {
   static final _appbarHeight = 58.0.h;
 
+
   HomePage({super.key});
 
   @override
@@ -34,6 +35,8 @@ class HomePage extends OpenCubitPageBase<SearchMovieCubit> {
 
   @override
   Widget body(BuildContext context) {
+
+
     return Scaffold(
       backgroundColor: AppTheme.primaryColor,
       resizeToAvoidBottomInset: false,

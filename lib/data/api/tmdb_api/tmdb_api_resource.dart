@@ -84,7 +84,6 @@ abstract class TMDBApiResource {
     @Query('language') String? language = 'en-US',
     @Query('page') int? page = 1,
     @Query('tv/on_the_air') String? timezone,
-
   });
 
   @GET('/movie/{movie_id}')
